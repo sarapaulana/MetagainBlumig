@@ -1,4 +1,4 @@
-package com.example.frontend;
+package com.metagain.frontend;
 
 import android.content.Context;
 

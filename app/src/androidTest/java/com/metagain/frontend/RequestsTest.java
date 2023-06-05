@@ -1,4 +1,4 @@
-package com.example.frontend;
+package com.metagain.frontend;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -9,7 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.frontend.views.UserProfile;
+import com.metagain.frontend.views.Requests;
 import com.example.metagain.R;
 
 import org.junit.Rule;
@@ -17,29 +17,29 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
-public class UserProfileTest {
+public class RequestsTest {
 
     @Rule
-    public ActivityScenarioRule<UserProfile> activityScenarioRule = new ActivityScenarioRule<>(UserProfile.class);
+    public ActivityScenarioRule<Requests> activityScenarioRule = new ActivityScenarioRule<>(Requests.class);
 
     @Test
     public void testBackButton() {
-        onView(withId(R.id.imageProfileBack)).perform(click());
+        onView(withId(R.id.imageAlertsBack)).perform(click());
 
         onView(withId(R.id.homepageLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
     @Test
-    public void testAbmeldenButton() {
-        onView(withId(R.id.buttonAbmelden)).perform(click());
+    public void testDeclineMeetingButton() {
+        onView(withId(R.id.imageDeclineMeeting)).perform(click());
 
-        onView(withId(R.id.loginLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        onView(withId(R.id.declinedLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
     @Test
-    public void testKontoLoeschenButton() {
-        onView(withId(R.id.buttonLoeschen)).perform(click());
+    public void testAcceptMeetingButton() {
+        onView(withId(R.id.imageAcceptMeeting)).perform(click());
 
-        onView(withId(R.id.loginLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        onView(withId(R.id.meetingsLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 }

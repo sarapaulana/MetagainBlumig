@@ -1,4 +1,4 @@
-package com.example.frontend.views;
+package com.metagain.frontend.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 

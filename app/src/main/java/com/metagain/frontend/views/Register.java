@@ -1,36 +1,33 @@
-package com.example.frontend.views;
+package com.metagain.frontend.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
 
 import com.example.metagain.R;
 
-public class Declined extends AppCompatActivity {
+public class Register extends AppCompatActivity {
 
-    ImageButton declinedBack;
+    Button buttonRegister;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_declined);
+        setContentView(R.layout.activity_register);
 
-        declinedBack = findViewById(R.id.imageDeclinedBack);
-
-        declinedBack.setOnClickListener(new View.OnClickListener() {
+        buttonRegister = findViewById(R.id.buttonRegistertoHome);
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backToHome();
+                openHomepage();
             }
         });
     }
 
-    public void backToHome() {
+    public void openHomepage() {
         Intent intent = new Intent(this, Homepage.class);
         startActivity(intent);
     }

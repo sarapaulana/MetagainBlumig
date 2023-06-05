@@ -1,4 +1,4 @@
-package com.example.frontend;
+package com.metagain.frontend;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -9,7 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.frontend.views.Meetings;
+import com.metagain.frontend.views.UserProfile;
 import com.example.metagain.R;
 
 import org.junit.Rule;
@@ -17,22 +17,29 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
-public class MeetingsTest {
+public class UserProfileTest {
 
     @Rule
-    public ActivityScenarioRule<Meetings> activityScenarioRule = new ActivityScenarioRule<>(Meetings.class);
+    public ActivityScenarioRule<UserProfile> activityScenarioRule = new ActivityScenarioRule<>(UserProfile.class);
 
     @Test
     public void testBackButton() {
-        onView(withId(R.id.imageMeetingsBack)).perform(click());
+        onView(withId(R.id.imageProfileBack)).perform(click());
 
         onView(withId(R.id.homepageLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
     @Test
-    public void testDeleteMeetingButton() {
-        onView(withId(R.id.imageDeleteMeeting)).perform(click());
+    public void testAbmeldenButton() {
+        onView(withId(R.id.buttonAbmelden)).perform(click());
 
-        onView(withId(R.id.declinedLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        onView(withId(R.id.loginLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+
+    @Test
+    public void testKontoLoeschenButton() {
+        onView(withId(R.id.buttonLoeschen)).perform(click());
+
+        onView(withId(R.id.loginLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 }
