@@ -1,4 +1,4 @@
-package com.example.metagain;
+package com.example.frontend.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,19 +8,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class ContactProfile extends AppCompatActivity {
+import com.example.metagain.R;
 
-    ImageButton contactBack;
+public class Declined extends AppCompatActivity {
+
+    ImageButton declinedBack;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact_profile);
+        setContentView(R.layout.activity_declined);
 
-        contactBack = findViewById(R.id.imageContactBack);
+        declinedBack = findViewById(R.id.imageDeclinedBack);
 
-        contactBack.setOnClickListener(new View.OnClickListener() {
+        declinedBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 backToHome();

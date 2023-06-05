@@ -1,4 +1,4 @@
-package com.example.metagain;
+package com.example.frontend;
 
 import org.junit.Test;
 

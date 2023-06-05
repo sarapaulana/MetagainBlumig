@@ -1,9 +1,9 @@
-package com.example.metagain;
-
-import static org.junit.Assert.*;
+package com.example.frontend;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import com.example.frontend.views.ContactProfile;
 
 import org.junit.Rule;
 import org.junit.runner.RunWith;

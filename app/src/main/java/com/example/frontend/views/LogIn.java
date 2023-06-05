@@ -1,4 +1,4 @@
-package com.example.metagain;
+package com.example.frontend.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
+
+import com.example.metagain.R;
 
 public class LogIn extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.metagain;
+package com.example.frontend.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+
+import com.example.metagain.R;
 
 public class Meetings extends AppCompatActivity {
 

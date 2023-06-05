@@ -1,4 +1,4 @@
-package com.example.metagain;
+package com.example.frontend.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import com.example.metagain.R;
 
 public class Homepage extends AppCompatActivity {
 
