@@ -20,4 +20,12 @@ public class OwnProfile {
     private String password;
 
     private boolean incognito;
+
+    public OwnProfile(String firstName, String lastName, String username, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 }

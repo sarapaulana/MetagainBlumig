@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/loginLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loginLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context="com.metagain.frontend.view.LogIn">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="248dp"
-        android:layout_height="92dp"
+        android:layout_width="279dp"
+        android:layout_height="76dp"
+        android:fontFamily="sans-serif-medium"
         android:text="metagain"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.345" />
+        app:layout_constraintVertical_bias="0.102" />
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="103dp"
         android:layout_height="57dp"
+        android:backgroundTint="#0E69AF"
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,12 +37,12 @@
         app:layout_constraintVertical_bias="0.71" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextUsername"
+        android:layout_width="256dp"
         android:layout_height="48dp"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
+        android:hint="Username"
+        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -46,11 +50,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextPassword"
+        android:layout_width="256dp"
         android:layout_height="48dp"
         android:ems="10"
-        android:hint="Passwort"
+        android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,11 +68,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registrieren"
+        android:textColor="#0E69AF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.784" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="157dp"
+        android:layout_height="122dp"
+        android:src="@drawable/bildschirmfoto_2023_06_06_um_16_32_34"
+        app:layout_constraintBottom_toTopOf="@+id/editTextUsername"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
