@@ -22,7 +22,7 @@ public interface MeetingController {
     public void deleteMeeting(UUID meetingID);
 
     /**
-     * legt den zu Nutzenden
+     * legt den zu nutzenden Network-Controller fest
      * @param meetingNetworkController
      */
     public void insertNetworkController(MeetingNetworkController meetingNetworkController);

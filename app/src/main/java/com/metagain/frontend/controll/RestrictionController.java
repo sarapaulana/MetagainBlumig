@@ -1,5 +1,7 @@
 package com.metagain.frontend.controll;
 
+import com.metagain.frontend.network.RestrictionNetworkController;
+
 import java.util.UUID;
 
 public interface RestrictionController {
@@ -26,4 +28,9 @@ public interface RestrictionController {
      */
     public void delete(UUID restrictionID);
 
+    /**
+     * legt den zu nutzenden Network-Controller fest
+     * @param restrictionNetworkController
+     */
+    public void insertNetworkController(RestrictionNetworkController restrictionNetworkController);
 }

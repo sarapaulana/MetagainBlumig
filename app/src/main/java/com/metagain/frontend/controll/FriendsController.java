@@ -8,6 +8,7 @@ import java.util.UUID;
 
 public interface FriendsController {
 
+
     /**
      * ruft eine get-Funktion beim Network-Controller auf, um alle Friends des users zu laden
      * @return Liste aller Friends

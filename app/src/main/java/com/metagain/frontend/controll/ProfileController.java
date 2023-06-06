@@ -4,6 +4,7 @@ import com.metagain.frontend.exceptions.InvalidEmailException;
 import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.LoginException;
 import com.metagain.frontend.model.OwnProfile;
+import com.metagain.frontend.network.ProfileNetworkController;
 
 public interface ProfileController {
 
@@ -38,5 +39,11 @@ public interface ProfileController {
      * @throws LoginException wenn die angegebenen Daten zu keinem Profil in der Datenbank passen
      */
     public void login(String username, String password) throws LoginException;
+
+    /**
+     * legt den zu nutzenden Network-Controller fest
+     * @param profileNetworkController
+     */
+    public void insertNetworkController(ProfileNetworkController profileNetworkController);
 
 }

@@ -2,6 +2,7 @@ package com.metagain.frontend.controll;
 
 import com.metagain.frontend.exceptions.NotFriendsException;
 import com.metagain.frontend.model.Request;
+import com.metagain.frontend.network.RequestNetworkController;
 
 import java.util.UUID;
 
@@ -28,5 +29,11 @@ public interface RequestController {
      * @param requestID id der zu löschenden Anfrage
      */
     public void deleteRequest(UUID requestID);
+
+    /**
+     * legt den zu nutzenden Network-Controller fest
+     * @param requestNetworkController
+     */
+    public void insertNetworkController(RequestNetworkController requestNetworkController);
 
 }
