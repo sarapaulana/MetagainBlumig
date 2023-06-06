@@ -9,8 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.metagain.frontend.views.UserProfile;
-import com.example.metagain.R;
+import com.metagain.frontend.view.UserProfile;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -24,7 +23,7 @@ public class UserProfileTest {
 
     @Test
     public void testBackButton() {
-        onView(withId(R.id.imageProfileBack)).perform(click());
+        onView(ViewMatchers.withId(R.id.imageProfileBack)).perform(click());
 
         onView(withId(R.id.homepageLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }

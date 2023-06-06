@@ -13,31 +13,31 @@
         android:theme="@style/Theme.Metagain"
         tools:targetApi="31">
         <activity
-            android:name=".ContactProfile"
+            android:name="com.metagain.frontend.view.ContactProfile"
             android:exported="false" />
         <activity
-            android:name=".Declined"
+            android:name="com.metagain.frontend.view.Declined"
             android:exported="false" />
         <activity
-            android:name=".HomepageInRadius"
+            android:name="com.metagain.frontend.view.HomepageInRadius"
             android:exported="false" />
         <activity
-            android:name=".UserProfile"
+            android:name="com.metagain.frontend.view.UserProfile"
             android:exported="false" />
         <activity
-            android:name=".Meetings"
+            android:name="com.metagain.frontend.view.Meetings"
             android:exported="false" />
         <activity
-            android:name=".Requests"
+            android:name="com.metagain.frontend.view.Requests"
             android:exported="false" />
         <activity
-            android:name=".Register"
+            android:name="com.metagain.frontend.view.Register"
             android:exported="false" />
         <activity
-            android:name=".Homepage"
+            android:name="com.metagain.frontend.view.Homepage"
             android:exported="false" />
         <activity
-            android:name=".LogIn"
+            android:name="com.metagain.frontend.view.LogIn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

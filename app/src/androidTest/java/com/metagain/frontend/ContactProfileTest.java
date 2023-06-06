@@ -3,7 +3,7 @@ package com.metagain.frontend;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.metagain.frontend.views.ContactProfile;
+import com.metagain.frontend.view.ContactProfile;
 
 import org.junit.Rule;
 import org.junit.runner.RunWith;

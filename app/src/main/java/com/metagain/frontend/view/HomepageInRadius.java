@@ -1,10 +1,10 @@
-package com.metagain.frontend.views;
+package com.metagain.frontend.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.metagain.R;
+import com.metagain.frontend.R;
 
 public class HomepageInRadius extends AppCompatActivity {
 

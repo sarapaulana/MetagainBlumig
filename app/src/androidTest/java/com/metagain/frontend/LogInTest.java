@@ -9,8 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.metagain.frontend.views.LogIn;
-import com.example.metagain.R;
+import com.metagain.frontend.view.LogIn;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -24,7 +23,7 @@ public class LogInTest {
 
     @Test
     public void testLoginButton() {
-        onView(withId(R.id.buttonLogin)).perform(click());
+        onView(ViewMatchers.withId(R.id.buttonLogin)).perform(click());
 
         onView(withId(R.id.homepageLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }

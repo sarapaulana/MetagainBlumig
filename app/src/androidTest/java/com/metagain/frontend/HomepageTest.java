@@ -9,8 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.metagain.frontend.views.Homepage;
-import com.example.metagain.R;
+import com.metagain.frontend.view.Homepage;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -24,7 +23,7 @@ public class HomepageTest {
 
     @Test
     public void testAlertsButton() {
-        onView(withId(R.id.homeToRequests)).perform(click());
+        onView(ViewMatchers.withId(R.id.homeToRequests)).perform(click());
 
         onView(withId(R.id.requestsLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
