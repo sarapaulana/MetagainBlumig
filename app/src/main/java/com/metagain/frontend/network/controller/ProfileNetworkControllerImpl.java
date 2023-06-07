@@ -12,7 +12,7 @@ import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class ProfileNetworkController implements Runnable {
+public class ProfileNetworkControllerImpl implements Runnable {
 
     private int connected = 0;
 
@@ -21,7 +21,7 @@ public class ProfileNetworkController implements Runnable {
     private Response<?> response;
 
 
-    private ProfileNetworkService profileNetworkService = NetworkConstants.getProfileNetworkController();
+    private ProfileNetworkService profileNetworkService = NetworkConstants.createProfileNetworkService();
 
     public void post(OwnProfile ownProfile) throws InvalidEmailException, NetworkErrorException{
         call = profileNetworkService.post(ownProfile);
@@ -69,10 +69,13 @@ public class ProfileNetworkController implements Runnable {
     }
 
 
+
+
     @Override
     public void run() {
         try {
             response = call.execute();
+            System.out.println(response.code());
         } catch (IOException e) {
             connected = -1;
         }

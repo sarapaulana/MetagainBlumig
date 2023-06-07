@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/oneCard"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:backgroundTint="#0300BCD4">
+
+        <TextView
+            android:id="@+id/cardText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="[Name] möchte dir folgen." />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/imageDecline"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:layout_marginRight="85dp"
+            android:backgroundTint="#4DE91E63"
+            android:contentDescription="decline"
+            app:srcCompat="@android:drawable/ic_delete" />
+
+        <ImageButton
+            android:id="@+id/imageAccept"
+            style="@android:style/Widget.Holo.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_marginLeft="85dp"
+            android:backgroundTint="#668BC34A"
+            android:contentDescription="accept"
+            app:srcCompat="?android:attr/textCheckMark"
+            app:tint="#4CAF50"
+            tools:srcCompat="@android:drawable/ic_input_add" />
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

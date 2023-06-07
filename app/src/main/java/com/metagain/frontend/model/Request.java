@@ -17,4 +17,24 @@ public class Request {
 
     private int radius;
 
+    public Request(Profile profile, RequestType requestType) {
+        this.profile = profile;
+        this.requestType = requestType;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public RequestType getRequestType() {
+        return requestType;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
 }

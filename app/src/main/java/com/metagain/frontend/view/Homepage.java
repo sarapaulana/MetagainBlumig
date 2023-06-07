@@ -17,6 +17,8 @@ public class Homepage extends AppCompatActivity {
     ImageButton meetings;
     ImageButton profile;
     Button inRadius;
+
+    Button buttonAddFriend;
     ImageButton contactProfile;
 
     @SuppressLint({"MissingInflatedId"})
@@ -64,15 +66,24 @@ public class Homepage extends AppCompatActivity {
                 openContactProfile();
             }
         });
+
+        buttonAddFriend = findViewById(R.id.buttonAddFriend);
+
+        buttonAddFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFollowRequest();
+            }
+        });
     }
 
     public void openRequests() {
-        Intent intent = new Intent(this, Requests.class);
+        Intent intent = new Intent(this, RequestsView.class);
         startActivity(intent);
     }
 
     public void openMeetings() {
-        Intent intent = new Intent(this, Meetings.class);
+        Intent intent = new Intent(this, MeetingsView.class);
         startActivity(intent);
     }
 
@@ -88,6 +99,11 @@ public class Homepage extends AppCompatActivity {
 
     public void openContactProfile() {
         Intent intent = new Intent(this, ContactProfile.class);
+        startActivity(intent);
+    }
+
+    public void openFollowRequest() {
+        Intent intent = new Intent(this, SendFollowRequest.class);
         startActivity(intent);
     }
 }

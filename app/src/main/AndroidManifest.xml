@@ -29,10 +29,10 @@
             android:name="com.metagain.frontend.view.UserProfile"
             android:exported="false" />
         <activity
-            android:name="com.metagain.frontend.view.Meetings"
+            android:name="com.metagain.frontend.view.MeetingsView"
             android:exported="false" />
         <activity
-            android:name="com.metagain.frontend.view.Requests"
+            android:name="com.metagain.frontend.view.RequestsView"
             android:exported="false" />
         <activity
             android:name="com.metagain.frontend.view.Register"
@@ -40,6 +40,9 @@
         <activity
             android:name="com.metagain.frontend.view.Homepage"
             android:exported="false" />
+        <activity
+            android:name="com.metagain.frontend.view.SendFollowRequest"
+            android:exported="false"/>
         <activity
             android:name="com.metagain.frontend.view.LogIn"
             android:exported="true">

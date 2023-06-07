@@ -9,29 +9,36 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.metagain.frontend.view.Meetings;
+import com.metagain.frontend.view.RequestsView;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
-public class MeetingsTest {
+public class RequestsViewTest {
 
     @Rule
-    public ActivityScenarioRule<Meetings> activityScenarioRule = new ActivityScenarioRule<>(Meetings.class);
+    public ActivityScenarioRule<RequestsView> activityScenarioRule = new ActivityScenarioRule<>(RequestsView.class);
 
     @Test
     public void testBackButton() {
-        onView(ViewMatchers.withId(R.id.imageMeetingsBack)).perform(click());
+        onView(ViewMatchers.withId(R.id.imageAlertsBack)).perform(click());
 
         onView(withId(R.id.homepageLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
     @Test
-    public void testDeleteMeetingButton() {
-        onView(withId(R.id.imageDeleteMeeting)).perform(click());
+    public void testDeclineMeetingButton() {
+        onView(withId(R.id.imageDeclineMeeting)).perform(click());
 
         onView(withId(R.id.declinedLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+
+    @Test
+    public void testAcceptMeetingButton() {
+        onView(withId(R.id.imageAcceptMeeting)).perform(click());
+
+        onView(withId(R.id.meetingsLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 }

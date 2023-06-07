@@ -5,8 +5,7 @@ import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.LoginException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.OwnProfile;
-import com.metagain.frontend.network.controller.ProfileNetworkController;
-import com.metagain.frontend.network.services.ProfileNetworkService;
+import com.metagain.frontend.network.controller.ProfileNetworkControllerImpl;
 
 public interface ProfileController {
 
@@ -46,6 +45,6 @@ public interface ProfileController {
      * legt den zu nutzenden Network-Controller fest
      * @param profileNetworkController
      */
-    public void insertNetworkController(ProfileNetworkController profileNetworkController);
+    public void insertNetworkController(ProfileNetworkControllerImpl profileNetworkController);
 
 }

@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 
 import com.metagain.frontend.R;
 
-public class Meetings extends AppCompatActivity {
+public class MeetingsView extends AppCompatActivity {
 
     ImageButton homeBack;
     ImageButton deleteMeeting;

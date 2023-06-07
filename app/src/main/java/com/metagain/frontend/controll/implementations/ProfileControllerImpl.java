@@ -7,16 +7,14 @@ import com.metagain.frontend.exceptions.LoginException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.OwnProfile;
 import com.metagain.frontend.network.NetworkConstants;
-import com.metagain.frontend.network.controller.ProfileNetworkController;
-import com.metagain.frontend.network.services.ProfileNetworkService;
+import com.metagain.frontend.network.controller.ProfileNetworkControllerImpl;
 import com.metagain.frontend.validator.EmailValidator;
 
 
 public class ProfileControllerImpl implements ProfileController {
 
-    private final ProfileNetworkController profileNetworkController = new ProfileNetworkController();
+    private final ProfileNetworkControllerImpl profileNetworkController = new ProfileNetworkControllerImpl();
 
-    private int code;
 
     @Override
     public void createAccount(OwnProfile ownProfile) throws InvalidEmailException, NetworkErrorException {
@@ -45,7 +43,7 @@ public class ProfileControllerImpl implements ProfileController {
     }
 
     @Override
-    public void insertNetworkController(ProfileNetworkController profileNetworkController) {
+    public void insertNetworkController(ProfileNetworkControllerImpl profileNetworkController) {
 
     }
 
