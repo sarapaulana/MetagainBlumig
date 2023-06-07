@@ -1,44 +1,30 @@
 package com.metagain.frontend.controll.implementations;
 
-import android.util.Log;
-
 import com.metagain.frontend.controll.ProfileController;
 import com.metagain.frontend.exceptions.InvalidEmailException;
 import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.LoginException;
+import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.OwnProfile;
-import com.metagain.frontend.model.Profile;
 import com.metagain.frontend.network.NetworkConstants;
-import com.metagain.frontend.network.ProfileNetworkController;
+import com.metagain.frontend.network.controller.ProfileNetworkController;
+import com.metagain.frontend.network.services.ProfileNetworkService;
+import com.metagain.frontend.validator.EmailValidator;
 
-import java.io.IOException;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ProfileControllerImpl implements ProfileController {
 
-    private final ProfileNetworkController profileNetworkController = NetworkConstants.getProfileNetworkController();
+    private final ProfileNetworkController profileNetworkController = new ProfileNetworkController();
 
     private int code;
 
     @Override
-    public void createAccount(OwnProfile ownProfile) throws InvalidEmailException, InvalidUsernameException {
-        Call<Void> callRegister = profileNetworkController.createAccount(ownProfile);
-        System.out.println("foooooo");
-        callRegister.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                System.out.println("aaaaaaaa");
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                System.out.println("Fehler: " + t.getLocalizedMessage());
-            }
-        });
-
+    public void createAccount(OwnProfile ownProfile) throws InvalidEmailException, NetworkErrorException {
+        if (!EmailValidator.isValidEmail(ownProfile.getEmail())) {
+            throw new InvalidEmailException();
+        }
+        profileNetworkController.post(ownProfile);
+        NetworkConstants.setAuthorization(ownProfile.getUsername(), ownProfile.getPassword());
     }
 
     @Override
@@ -52,12 +38,16 @@ public class ProfileControllerImpl implements ProfileController {
     }
 
     @Override
-    public void login(String username, String password) throws LoginException {
-        throw new LoginException();
+    public void login(String username, String password) throws LoginException, NetworkErrorException {
+        NetworkConstants.setAuthorization(username, password);
+        profileNetworkController.get();
+
     }
 
     @Override
     public void insertNetworkController(ProfileNetworkController profileNetworkController) {
 
     }
+
+
 }

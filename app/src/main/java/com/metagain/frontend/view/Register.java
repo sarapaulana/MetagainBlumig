@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +14,7 @@ import com.metagain.frontend.R;
 import com.metagain.frontend.controll.ProfileController;
 import com.metagain.frontend.controll.implementations.ProfileControllerImpl;
 import com.metagain.frontend.exceptions.InvalidEmailException;
-import com.metagain.frontend.exceptions.InvalidUsernameException;
+import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.OwnProfile;
 
 public class Register extends AppCompatActivity {
@@ -56,9 +54,10 @@ public class Register extends AppCompatActivity {
                     openHomepage();
                 } catch (InvalidEmailException e) {
                     Toast.makeText(Register.this, "Invalid Email", Toast.LENGTH_SHORT).show();
-                } catch (InvalidUsernameException e) {
-                    Toast.makeText(Register.this, "Username already exists", Toast.LENGTH_SHORT).show();
+                } catch (NetworkErrorException e) {
+                    Toast.makeText(Register.this, "Network Error", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
         });

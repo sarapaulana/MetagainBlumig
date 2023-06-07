@@ -3,8 +3,10 @@ package com.metagain.frontend.controll;
 import com.metagain.frontend.exceptions.InvalidEmailException;
 import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.LoginException;
+import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.OwnProfile;
-import com.metagain.frontend.network.ProfileNetworkController;
+import com.metagain.frontend.network.controller.ProfileNetworkController;
+import com.metagain.frontend.network.services.ProfileNetworkService;
 
 public interface ProfileController {
 
@@ -15,7 +17,7 @@ public interface ProfileController {
      * @throws InvalidEmailException wenn die angegebene email nicht der typischen Email-Form entspricht
      * @throws InvalidUsernameException wenn der username schon vergeben ist
      */
-    public void createAccount(OwnProfile ownProfile) throws InvalidEmailException, InvalidUsernameException;
+    public void createAccount(OwnProfile ownProfile) throws InvalidEmailException, NetworkErrorException;
 
     /**
      * gibt die neuen Daten an den Network-Controller und sorgt dafür, dass die Angaben in
@@ -38,7 +40,7 @@ public interface ProfileController {
      * @param password angegeben
      * @throws LoginException wenn die angegebenen Daten zu keinem Profil in der Datenbank passen
      */
-    public void login(String username, String password) throws LoginException;
+    public void login(String username, String password) throws LoginException, NetworkErrorException;
 
     /**
      * legt den zu nutzenden Network-Controller fest

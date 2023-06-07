@@ -15,6 +15,7 @@ import com.metagain.frontend.R;
 import com.metagain.frontend.controll.ProfileController;
 import com.metagain.frontend.controll.implementations.ProfileControllerImpl;
 import com.metagain.frontend.exceptions.LoginException;
+import com.metagain.frontend.exceptions.NetworkErrorException;
 
 public class LogIn extends AppCompatActivity {
 
@@ -48,6 +49,8 @@ public class LogIn extends AppCompatActivity {
                     openHomepage();
                 } catch (LoginException e) {
                     Toast.makeText(LogIn.this, "Username or Password is incorrect", Toast.LENGTH_SHORT).show();
+                } catch (NetworkErrorException e) {
+                    Toast.makeText(LogIn.this, "Network Error", Toast.LENGTH_SHORT).show();
                 }
 
 

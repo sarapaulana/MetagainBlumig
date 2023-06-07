@@ -1,7 +1,9 @@
 package com.metagain.frontend.network;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.metagain.frontend.network.services.ProfileNetworkService;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -15,6 +17,8 @@ public class NetworkConstants {
 
     private static final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
+    public static String AUTHORIZATION = "";
+
     public static final Retrofit RETROFIT = new Retrofit.Builder()
             .baseUrl(URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -22,8 +26,14 @@ public class NetworkConstants {
             .build();
 
 
-    public static ProfileNetworkController getProfileNetworkController() {
-        return RETROFIT.create(ProfileNetworkController.class);
+    public static ProfileNetworkService getProfileNetworkController() {
+        return RETROFIT.create(ProfileNetworkService.class);
+    }
+
+    public static void setAuthorization(String username, String password) {
+
+        AUTHORIZATION = "Basic " + Base64.getEncoder().encodeToString((username+":"+password).getBytes(StandardCharsets.UTF_8));
+
     }
 
 }
