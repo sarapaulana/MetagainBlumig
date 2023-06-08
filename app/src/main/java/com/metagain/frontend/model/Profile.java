@@ -2,10 +2,11 @@ package com.metagain.frontend.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Data
-public class Profile {
+public class Profile implements Serializable {
 
     private UUID id;
 

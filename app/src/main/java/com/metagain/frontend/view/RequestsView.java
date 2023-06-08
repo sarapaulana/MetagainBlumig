@@ -18,6 +18,7 @@ import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.Request;
 import com.metagain.frontend.model.types.RequestType;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -53,60 +54,62 @@ public class RequestsView extends AppCompatActivity {
 
 
 
-
+        List<Request> requestList = new ArrayList<>();
 
         try {
-            List<Request> requestList = requestController.getRequests();
-            for (Request request: requestList) {
+            requestList = requestController.getRequests();
 
-                String cardText = "ERROR";
-
-                if (request.getRequestType().equals(RequestType.FOLLOW)) {
-                    cardText = request.getProfile().getUsername() + " möchte dir folgen";
-                } else if (request.getRequestType().equals(RequestType.MEET)) {
-                    cardText = request.getProfile().getUsername() + " möchte sich mit dir treffen";
-                } else if (request.getRequestType().equals(RequestType.RADIUS)) {
-                    cardText = request.getProfile().getUsername() + " möchte den radius auf " + request.getRadius() + "m ändern.";
-                }
-
-                View cardViewLayout = getLayoutInflater().inflate(R.layout.card_layout, null);
-
-                TextView cardTextView = cardViewLayout.findViewById(R.id.cardText);
-                ImageButton imageDecline = cardViewLayout.findViewById(R.id.imageDecline);
-
-                imageDecline.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            requestController.deleteRequest(request.getId());
-                            parentLayout.removeView(cardViewLayout);
-                        } catch (NetworkErrorException e) {
-                            Toast.makeText(RequestsView.this, "Network Error", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
-                ImageButton imageAccept = cardViewLayout.findViewById(R.id.imageAccept);
-
-                imageAccept.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            requestController.acceptRequest(request.getId());
-                            parentLayout.removeView(cardViewLayout);
-                        } catch (NetworkErrorException e) {
-                            Toast.makeText(RequestsView.this, "Network Error", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
-                cardTextView.setText(cardText);
-
-                parentLayout.addView(cardViewLayout);
-
-            }
         } catch (NetworkErrorException e) {
             Toast.makeText(RequestsView.this, "Network Error", Toast.LENGTH_SHORT).show();
+        }
+
+        for (Request request: requestList) {
+
+            String cardText = "ERROR";
+
+            if (request.getRequestType().equals(RequestType.FOLLOW)) {
+                cardText = request.getProfile().getUsername() + " möchte dir folgen";
+            } else if (request.getRequestType().equals(RequestType.MEET)) {
+                cardText = request.getProfile().getUsername() + " möchte sich mit dir treffen";
+            } else if (request.getRequestType().equals(RequestType.RADIUS)) {
+                cardText = request.getProfile().getUsername() + " möchte den radius auf " + request.getRadius() + "m ändern.";
+            }
+
+            View cardViewLayout = getLayoutInflater().inflate(R.layout.card_layout, null);
+
+            TextView cardTextView = cardViewLayout.findViewById(R.id.cardText);
+            ImageButton imageDecline = cardViewLayout.findViewById(R.id.imageDecline);
+
+            imageDecline.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        requestController.deleteRequest(request.getId());
+                        parentLayout.removeView(cardViewLayout);
+                    } catch (NetworkErrorException e) {
+                        Toast.makeText(RequestsView.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+            ImageButton imageAccept = cardViewLayout.findViewById(R.id.imageAccept);
+
+            imageAccept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        requestController.acceptRequest(request.getId());
+                        parentLayout.removeView(cardViewLayout);
+                    } catch (NetworkErrorException e) {
+                        Toast.makeText(RequestsView.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+            cardTextView.setText(cardText);
+
+            parentLayout.addView(cardViewLayout);
+
         }
     }
 
