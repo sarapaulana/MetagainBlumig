@@ -21,7 +21,7 @@ public class FriendsNetworkControllerImpl implements FriendsNetworkController, R
 
     private Call<?> call;
 
-    private Response<?> response;
+    private Response response;
 
     private FriendsNetworkService friendsNetworkService = NetworkConstants.createFriendsNetworkService();
 
@@ -67,12 +67,14 @@ public class FriendsNetworkControllerImpl implements FriendsNetworkController, R
             connected = 0;
             throw new NetworkErrorException();
         }
+
     }
 
     @Override
     public void run() {
         try {
             response = call.execute();
+
             call = null;
             System.out.println(response.code());
         } catch (IOException e) {

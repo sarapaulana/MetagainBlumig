@@ -78,6 +78,8 @@ public class ProfileNetworkControllerImpl implements Runnable {
             System.out.println(response.code());
         } catch (IOException e) {
             connected = -1;
+        } catch (Throwable t) {
+
         }
         synchronized (this) {
             this.notify();

@@ -16,6 +16,7 @@ public interface FriendsController {
      */
     public List<Friends> getFriends() throws NetworkErrorException;
 
+
     public List<Friends> getFriendsInRadius() throws NetworkErrorException;
 
     /**

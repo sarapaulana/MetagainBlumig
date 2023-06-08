@@ -45,6 +45,9 @@
             android:name="com.metagain.frontend.view.SendFollowRequest"
             android:exported="false"/>
         <activity
+            android:name=".view.SendRadiusRequest"
+            android:exported="false"/>
+        <activity
             android:name="com.metagain.frontend.view.LogIn"
             android:exported="true">
             <intent-filter>

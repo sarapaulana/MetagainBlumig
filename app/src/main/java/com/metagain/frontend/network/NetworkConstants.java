@@ -5,10 +5,13 @@ import com.metagain.frontend.network.services.LocationNetworkService;
 import com.metagain.frontend.network.services.ProfileNetworkService;
 import com.metagain.frontend.network.services.RequestNetworkService;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -25,14 +28,17 @@ public class NetworkConstants {
 
     public static final String UPDATE_LOCATION = "updates/location";
 
-    private static final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+    private static final OkHttpClient httpClient = new OkHttpClient.Builder().build();
+
+    private static boolean closed = false;
+
 
     public static String AUTHORIZATION = "";
 
     public static final Retrofit RETROFIT = new Retrofit.Builder()
             .baseUrl(URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(httpClient.build())
+            .client(httpClient)
             .build();
 
 
@@ -57,5 +63,8 @@ public class NetworkConstants {
         AUTHORIZATION = "Basic " + Base64.getEncoder().encodeToString((username+":"+password).getBytes(StandardCharsets.UTF_8));
 
     }
+
+
+
 
 }

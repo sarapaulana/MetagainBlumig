@@ -42,9 +42,11 @@ public class LocationNetworkController implements Runnable {
     @Override
     public void run() {
         try {
-            response = call.execute();
-            call = null;
-            System.out.println(response.code());
+            synchronized (this) {
+                response = call.execute();
+                call = null;
+                System.out.println(response.code());
+            }
         } catch (IOException e) {
             connected = -1;
         } catch (Throwable throwable) {
