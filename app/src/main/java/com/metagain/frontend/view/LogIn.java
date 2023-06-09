@@ -3,6 +3,7 @@ package com.metagain.frontend.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.TaskStackBuilder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +33,7 @@ public class LogIn extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
 
         etPassword = findViewById(R.id.editTextPassword);
@@ -78,7 +80,9 @@ public class LogIn extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
-
-        super.onBackPressed();
     }
+
+
+
+
 }

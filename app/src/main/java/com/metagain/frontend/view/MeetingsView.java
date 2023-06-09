@@ -63,8 +63,10 @@ public class MeetingsView extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void toDeclined() {
-        Intent intent = new Intent(this, Declined.class);
+
+
+    public void openMap() {
+        Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
     }
 
@@ -76,7 +78,7 @@ public class MeetingsView extends AppCompatActivity {
         usernameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                openMap();
             }
         });
 

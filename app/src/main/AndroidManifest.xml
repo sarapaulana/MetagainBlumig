@@ -33,6 +33,9 @@
             android:name="com.metagain.frontend.view.MeetingsView"
             android:exported="false" />
         <activity
+            android:name=".view.MapActivity"
+            android:exported="false"/>
+        <activity
             android:name="com.metagain.frontend.view.RequestsView"
             android:exported="false" />
         <activity

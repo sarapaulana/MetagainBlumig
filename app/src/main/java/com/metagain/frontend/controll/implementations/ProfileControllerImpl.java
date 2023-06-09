@@ -23,6 +23,8 @@ public class ProfileControllerImpl implements ProfileController {
             throw new InvalidEmailException();
         }
         profileNetworkController.post(ownProfile);
+
+        ProfileDataStorage.setOwnProfile(ownProfile);
         NetworkConstants.setAuthorization(ownProfile.getUsername(), ownProfile.getPassword());
     }
 
@@ -30,6 +32,34 @@ public class ProfileControllerImpl implements ProfileController {
     public void editProfile(OwnProfile ownProfile) throws InvalidUsernameException, InvalidEmailException {
 
     }
+
+    @Override
+    public void editUsername(String username) throws InvalidUsernameException, NetworkErrorException, InvalidEmailException {
+        OwnProfile ownProfile = ProfileDataStorage.getOwnProfile();
+        ownProfile.setUsername(username);
+        ProfileDataStorage.setUsername(username);
+        profileNetworkController.put(ownProfile);
+    }
+
+    @Override
+    public void editEmail(String email) throws InvalidEmailException, NetworkErrorException, InvalidUsernameException {
+        if (!EmailValidator.isValidEmail(email)) {
+            throw new InvalidEmailException();
+        }
+        OwnProfile ownProfile = ProfileDataStorage.getOwnProfile();
+        ownProfile.setEmail(email);
+        ProfileDataStorage.setEmail(email);
+        profileNetworkController.put(ownProfile);
+    }
+
+    @Override
+    public void editPassword(String password) throws InvalidEmailException, InvalidUsernameException, NetworkErrorException {
+        OwnProfile ownProfile = ProfileDataStorage.getOwnProfile();
+        ownProfile.setPassword(password);
+        ProfileDataStorage.setPassword(password);
+        profileNetworkController.put(ownProfile);
+    }
+
 
     @Override
     public OwnProfile getOwnProfile() {
@@ -40,9 +70,8 @@ public class ProfileControllerImpl implements ProfileController {
     public void login(String username, String password) throws LoginException, NetworkErrorException {
         NetworkConstants.setAuthorization(username, password);
         OwnProfile ownProfile = profileNetworkController.get();
-        ProfileDataStorage.setUsername(ownProfile.getUsername());
-        ProfileDataStorage.setEmail(ownProfile.getEmail());
-        ProfileDataStorage.setPassword(password);
+        ownProfile.setPassword(password);
+        ProfileDataStorage.setOwnProfile(ownProfile);
 
     }
 

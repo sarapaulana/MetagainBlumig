@@ -223,4 +223,9 @@ public class Homepage extends AppCompatActivity {
         Intent serviceIntent = new Intent(this, LocationService.class);
         stopService(serviceIntent);
     }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }

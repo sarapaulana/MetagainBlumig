@@ -6,6 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF"
+    android:foregroundTint="#4A3B3B"
     tools:context="com.metagain.frontend.view.LogIn">
 
     <TextView
@@ -40,9 +43,14 @@
         android:id="@+id/editTextUsername"
         android:layout_width="256dp"
         android:layout_height="48dp"
+        android:backgroundTint="#292424"
         android:ems="10"
+        android:foregroundTint="#4E4E4E"
         android:hint="Username"
         android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHint="#555454"
+        android:textColorLink="#7C7B7B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -53,9 +61,13 @@
         android:id="@+id/editTextPassword"
         android:layout_width="256dp"
         android:layout_height="48dp"
+        android:backgroundTint="#292424"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColor="#000000"
+        android:textColorHighlight="#60C4EA"
+        android:textColorHint="#555454"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

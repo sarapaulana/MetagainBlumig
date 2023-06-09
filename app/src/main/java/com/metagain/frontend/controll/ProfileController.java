@@ -27,6 +27,12 @@ public interface ProfileController {
      */
     public void editProfile(OwnProfile ownProfile) throws InvalidUsernameException, InvalidEmailException;
 
+    public void editUsername(String username) throws InvalidUsernameException, NetworkErrorException, InvalidEmailException;
+
+    public void editEmail(String email) throws InvalidEmailException, NetworkErrorException, InvalidUsernameException;
+
+    public void editPassword(String password) throws InvalidEmailException, InvalidUsernameException, NetworkErrorException;
+
     /**
      * ruft eine get-Fuktion beim Network-Controller auf; alle Profildaten werden geladen
      * @return das eigene Profil

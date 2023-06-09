@@ -1,6 +1,7 @@
 package com.metagain.frontend.network.controller;
 
 import com.metagain.frontend.exceptions.InvalidEmailException;
+import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.LoginException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.OwnProfile;
@@ -77,6 +78,26 @@ public class ProfileNetworkControllerImpl implements Runnable {
         } catch (Throwable t) {
             System.out.println(t.toString());
         }
+
+        Thread execute = new Thread(this);
+        execute.start();
+
+        synchronized(this) {
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (connected == -1) {
+            connected = 0;
+            throw new NetworkErrorException();
+        }
+    }
+
+    public void put(OwnProfile ownProfile) throws InvalidUsernameException, NetworkErrorException, InvalidEmailException {
+        call = profileNetworkService.put(NetworkConstants.AUTHORIZATION, ownProfile);
 
         Thread execute = new Thread(this);
         execute.start();
