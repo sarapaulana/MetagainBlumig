@@ -44,8 +44,39 @@ public class ProfileNetworkControllerImpl implements Runnable {
 
     }
 
-    public void get() throws NetworkErrorException, LoginException {
+    public OwnProfile get() throws NetworkErrorException, LoginException {
         call = profileNetworkService.get(NetworkConstants.AUTHORIZATION);
+
+        Thread execute = new Thread(this);
+        execute.start();
+
+        synchronized(this) {
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        OwnProfile ownProfile;
+
+        if (connected == -1) {
+            connected = 0;
+            throw new NetworkErrorException();
+        } else if(response.code() == 401) {
+            throw new LoginException();
+        } else {
+            ownProfile = (OwnProfile) response.body();
+        }
+        return ownProfile;
+    }
+
+    public void delete() throws  NetworkErrorException {
+        try {
+            call = profileNetworkService.delete(NetworkConstants.AUTHORIZATION);
+        } catch (Throwable t) {
+            System.out.println(t.toString());
+        }
 
         Thread execute = new Thread(this);
         execute.start();
@@ -61,10 +92,6 @@ public class ProfileNetworkControllerImpl implements Runnable {
         if (connected == -1) {
             connected = 0;
             throw new NetworkErrorException();
-        } else if(response.code() == 401) {
-            throw new LoginException();
-        } else {
-            OwnProfile ownProfile = (OwnProfile) response.body();
         }
     }
 
@@ -79,7 +106,7 @@ public class ProfileNetworkControllerImpl implements Runnable {
         } catch (IOException e) {
             connected = -1;
         } catch (Throwable t) {
-
+            System.out.println(t);
         }
         synchronized (this) {
             this.notify();

@@ -21,7 +21,6 @@ import com.metagain.frontend.controll.FriendsController;
 import com.metagain.frontend.controll.implementations.FriendsControllerImpl;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.Friends;
-import com.metagain.frontend.network.NetworkConstants;
 import com.metagain.frontend.services.LocationService;
 
 import java.util.List;

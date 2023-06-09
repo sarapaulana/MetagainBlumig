@@ -1,8 +1,11 @@
 package com.metagain.frontend.controll;
 
 import com.metagain.frontend.exceptions.CoordinatesFormatException;
+import com.metagain.frontend.exceptions.NetworkErrorException;
+import com.metagain.frontend.model.Meeting;
 import com.metagain.frontend.network.MeetingNetworkController;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface MeetingController {
@@ -19,7 +22,9 @@ public interface MeetingController {
      * löscht das Meeting aus der Datenbank, indem eine delete-Funktion beim Network-Controller aufgerufen wird
      * @param meetingID des zu löschenden Meetings
      */
-    public void deleteMeeting(UUID meetingID);
+    public void deleteMeeting(UUID meetingID) throws NetworkErrorException;
+
+    public List<Meeting> getMeetings() throws NetworkErrorException;
 
     /**
      * legt den zu nutzenden Network-Controller fest

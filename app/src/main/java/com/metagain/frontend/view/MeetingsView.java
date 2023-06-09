@@ -6,14 +6,27 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.metagain.frontend.R;
+import com.metagain.frontend.controll.MeetingController;
+import com.metagain.frontend.controll.implementations.MeetingControllerImpl;
+import com.metagain.frontend.exceptions.NetworkErrorException;
+import com.metagain.frontend.model.Meeting;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MeetingsView extends AppCompatActivity {
 
     ImageButton homeBack;
-    ImageButton deleteMeeting;
+
+    MeetingController meetingController = new MeetingControllerImpl();
+
+    LinearLayout parentLayout;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -21,8 +34,10 @@ public class MeetingsView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meetings);
 
-        homeBack = findViewById(R.id.imageMeetingsBack);
+        parentLayout = findViewById(R.id.cardContainerMeetings);
 
+
+        homeBack = findViewById(R.id.imageMeetingsBack);
         homeBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,14 +45,17 @@ public class MeetingsView extends AppCompatActivity {
             }
         });
 
-        deleteMeeting = findViewById(R.id.imageDeleteMeeting);
+        List<Meeting> meetings = new ArrayList<>();
 
-        deleteMeeting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toDeclined();
-            }
-        });
+        try {
+            meetings = meetingController.getMeetings();
+        } catch (NetworkErrorException e) {
+            Toast.makeText(this, "Network Error", Toast.LENGTH_SHORT);
+        }
+
+        for (Meeting meeting: meetings) {
+            createOneCard(meeting);
+        }
     }
 
     public void backToHome() {
@@ -48,5 +66,33 @@ public class MeetingsView extends AppCompatActivity {
     public void toDeclined() {
         Intent intent = new Intent(this, Declined.class);
         startActivity(intent);
+    }
+
+    public void createOneCard(Meeting meeting) {
+        View cardViewLayout = getLayoutInflater().inflate(R.layout.meeting_card, null);
+
+        Button usernameButton = cardViewLayout.findViewById(R.id.buttonUsernameMeeting);
+        usernameButton.setText(meeting.getProfile().getUsername());
+        usernameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO
+            }
+        });
+
+        ImageButton deleteMeetingButton = cardViewLayout.findViewById(R.id.imageDeleteMeeting);
+        deleteMeetingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    meetingController.deleteMeeting(meeting.getId());
+                    parentLayout.removeView(cardViewLayout);
+                } catch (NetworkErrorException e) {
+                    Toast.makeText(MeetingsView.this, "Network Error", Toast.LENGTH_SHORT);
+                }
+            }
+        });
+
+        parentLayout.addView(cardViewLayout);
     }
 }

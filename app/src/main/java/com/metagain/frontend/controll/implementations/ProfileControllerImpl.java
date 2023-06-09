@@ -6,6 +6,7 @@ import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.LoginException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.OwnProfile;
+import com.metagain.frontend.model.storage.ProfileDataStorage;
 import com.metagain.frontend.network.NetworkConstants;
 import com.metagain.frontend.network.controller.ProfileNetworkControllerImpl;
 import com.metagain.frontend.validator.EmailValidator;
@@ -38,8 +39,29 @@ public class ProfileControllerImpl implements ProfileController {
     @Override
     public void login(String username, String password) throws LoginException, NetworkErrorException {
         NetworkConstants.setAuthorization(username, password);
-        profileNetworkController.get();
+        OwnProfile ownProfile = profileNetworkController.get();
+        ProfileDataStorage.setUsername(ownProfile.getUsername());
+        ProfileDataStorage.setEmail(ownProfile.getEmail());
+        ProfileDataStorage.setPassword(password);
 
+    }
+
+    @Override
+    public void logout() {
+        NetworkConstants.removeAuthorization();
+        ProfileDataStorage.setUsername("");
+        ProfileDataStorage.setEmail("");
+        ProfileDataStorage.setPassword("");
+    }
+
+    @Override
+    public void delete() throws NetworkErrorException {
+        profileNetworkController.delete();
+
+        NetworkConstants.removeAuthorization();
+        ProfileDataStorage.setUsername("");
+        ProfileDataStorage.setEmail("");
+        ProfileDataStorage.setPassword("");
     }
 
     @Override

@@ -14,4 +14,15 @@ public class Meeting {
 
     private double[] meetingPoint;
 
+    public UUID getId() {
+        return id;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public double[] getMeetingPoint() {
+        return meetingPoint;
+    }
 }

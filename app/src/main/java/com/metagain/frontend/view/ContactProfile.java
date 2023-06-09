@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.metagain.frontend.R;
 import com.metagain.frontend.controll.FriendsController;
@@ -31,9 +30,13 @@ public class ContactProfile extends AppCompatActivity {
 
     Button editRadius;
 
+    Button requestMeeting;
+
     TextView friendsFullName;
 
     TextView friendsUsername;
+
+    TextView friendsRadius;
 
     RequestController requestController = new RequestControllerImpl();
 
@@ -43,16 +46,40 @@ public class ContactProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact_profile);
+
 
         Intent intent = getIntent();
         Friends friends = (Friends) intent.getSerializableExtra("friends");
+        if(friends.isInRadius()) {
+            setContentView(R.layout.activity_contact_profile_in_radius);
+            requestMeeting = findViewById(R.id.buttonRequestMeeting);
+            requestMeeting.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Request request = new Request(friends.getFriendsProfile(), RequestType.MEET);
+                    try {
+                        requestController.sendRequest(request);
+                        backToHome();
+                    } catch (NotFriendsException e) {
+                        Toast.makeText(ContactProfile.this, "No Friends!", Toast.LENGTH_SHORT).show();
+                    } catch (NetworkErrorException e) {
+                        Toast.makeText(ContactProfile.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        } else {
+            setContentView(R.layout.activity_contact_profile);
+        }
+
 
         friendsFullName = findViewById(R.id.textViewFriendsFullName);
         friendsFullName.setText(friends.getFriendsProfile().getFirstName() + " " + friends.getFriendsProfile().getLastName());
 
         friendsUsername = findViewById(R.id.textViewFriendsUsernameContact);
         friendsUsername.setText(friends.getFriendsProfile().getUsername());
+
+        friendsRadius = findViewById(R.id.textViewFriendsRadiusContactProfile);
+        friendsRadius.setText("YOUR RADIUS: " + friends.getRadius() + "m");
 
         unfollowButton = findViewById(R.id.buttonUnfollow);
         unfollowButton.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +94,6 @@ public class ContactProfile extends AppCompatActivity {
             }
         });
 
-
         contactBack = findViewById(R.id.imageContactBack);
         contactBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,13 +103,14 @@ public class ContactProfile extends AppCompatActivity {
         });
 
         editRadius = findViewById(R.id.buttonEditRadius);
-
         editRadius.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openRadiusRequest(friends);
             }
         });
+
+
     }
 
     public void backToHome() {

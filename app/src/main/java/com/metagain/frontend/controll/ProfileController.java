@@ -41,6 +41,10 @@ public interface ProfileController {
      */
     public void login(String username, String password) throws LoginException, NetworkErrorException;
 
+    public void logout();
+
+    public void delete() throws NetworkErrorException;
+
     /**
      * legt den zu nutzenden Network-Controller fest
      * @param profileNetworkController
