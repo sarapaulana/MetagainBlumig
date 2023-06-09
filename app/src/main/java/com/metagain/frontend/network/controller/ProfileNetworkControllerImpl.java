@@ -24,6 +24,16 @@ public class ProfileNetworkControllerImpl implements Runnable {
 
     private ProfileNetworkService profileNetworkService = NetworkConstants.createProfileNetworkService();
 
+//    public ProfileNetworkControllerImpl(int connected, Call<?> call, Response<?> response, ProfileNetworkService profileNetworkService) {
+//        this.connected = connected;
+//        this.call = call;
+//        this.response = response;
+//        this.profileNetworkService = profileNetworkService;
+//    }
+//
+//    public ProfileNetworkControllerImpl() {
+//
+//    }
     public void post(OwnProfile ownProfile) throws InvalidEmailException, NetworkErrorException{
         call = profileNetworkService.post(ownProfile);
 

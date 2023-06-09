@@ -38,6 +38,6 @@ public class FriendsControllerImpl implements FriendsController {
 
     @Override
     public void insertNetworkController(FriendsNetworkController friendsNetworkController) {
-
+        this.friendsNetworkController = friendsNetworkController;
     }
 }

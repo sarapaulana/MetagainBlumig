@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public class RequestControllerImpl implements RequestController {
 
-    private final RequestNetworkController requestNetworkController = new RequestNetworkControllerImpl();
+    private RequestNetworkController requestNetworkController = new RequestNetworkControllerImpl();
     @Override
     public void sendRequest(Request request) throws NotFriendsException, NetworkErrorException {
         requestNetworkController.post(request);
@@ -38,6 +38,6 @@ public class RequestControllerImpl implements RequestController {
 
     @Override
     public void insertNetworkController(RequestNetworkController requestNetworkController) {
-
+        this.requestNetworkController = requestNetworkController;
     }
 }

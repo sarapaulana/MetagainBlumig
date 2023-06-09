@@ -33,7 +33,6 @@ public class NetworkConstants {
 
     private static final OkHttpClient httpClient = new OkHttpClient.Builder().build();
 
-    private static boolean closed = false;
 
 
     public static String AUTHORIZATION = "";

@@ -14,7 +14,7 @@ import com.metagain.frontend.validator.EmailValidator;
 
 public class ProfileControllerImpl implements ProfileController {
 
-    private final ProfileNetworkControllerImpl profileNetworkController = new ProfileNetworkControllerImpl();
+    private ProfileNetworkControllerImpl profileNetworkController = new ProfileNetworkControllerImpl();
 
 
     @Override
@@ -95,7 +95,7 @@ public class ProfileControllerImpl implements ProfileController {
 
     @Override
     public void insertNetworkController(ProfileNetworkControllerImpl profileNetworkController) {
-
+        this.profileNetworkController = profileNetworkController;
     }
 
 
