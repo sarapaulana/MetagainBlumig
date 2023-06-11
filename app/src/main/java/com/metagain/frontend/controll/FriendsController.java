@@ -17,6 +17,11 @@ public interface FriendsController {
     public List<Friends> getFriends() throws NetworkErrorException;
 
 
+    /**
+     * ruft eine get-Funktion beim Network-Controller auf, um alle Freunde die in einem bestimmten Radius sind zu laden
+     * @return eine Liste mit allen Freunden in dem Radius
+     * @throws NetworkErrorException wenn man keine Verbindung zum Internet hat um die Daten zu aktualisieren
+     */
     public List<Friends> getFriendsInRadius() throws NetworkErrorException;
 
     /**
