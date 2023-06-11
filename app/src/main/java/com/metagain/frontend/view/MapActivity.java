@@ -8,7 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.metagain.frontend.R;
 
 import org.osmdroid.config.Configuration;
-import org.osmdroid.library.BuildConfig;
+// import org.osmdroid.library.BuildConfig;
+import com.metagain.frontend.BuildConfig;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;

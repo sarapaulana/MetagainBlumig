@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.metagain.frontend.R;
 import com.metagain.frontend.controll.FriendsController;
 import com.metagain.frontend.controll.implementations.FriendsControllerImpl;

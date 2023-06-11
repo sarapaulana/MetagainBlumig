@@ -60,19 +60,19 @@ dependencies {
 
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
-    testImplementation 'org.robolectric:robolectric:4.9'
+    testImplementation 'org.robolectric:robolectric:4.10.3'
 
     implementation 'androidx.preference:preference:1.2.0'
 
-    testImplementation 'org.mockito:mockito-core:2.1.0'
-    androidTestImplementation 'org.mockito:mockito-core:2.1.0'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
+    androidTestImplementation 'org.mockito:mockito-core:5.3.1'
 
     testImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
     androidTestImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
 
     annotationProcessor 'org.projectlombok:lombok:1.18.28' //or v. 1.16.2 in your case.
 
-    implementation 'org.osmdroid:osmdroid-android:6.1.1'
+    implementation 'org.osmdroid:osmdroid-android:6.1.16'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
