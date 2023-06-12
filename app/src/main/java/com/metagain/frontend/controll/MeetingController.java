@@ -24,6 +24,11 @@ public interface MeetingController {
      */
     public void deleteMeeting(UUID meetingID) throws NetworkErrorException;
 
+    /**
+     * ruft eine get-Methode in Network-Controller auf, welcher alle Meetings von einem user aus der Datenbank lädt
+     * @return eine Liste von allen Meetings eines users
+     * @throws NetworkErrorException wenn man keine Verbindung zum Internet hat um die Daten zu aktualisieren
+     */
     public List<Meeting> getMeetings() throws NetworkErrorException;
 
     /**
