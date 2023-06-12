@@ -16,7 +16,6 @@ public class RequestControllerImpl implements RequestController {
     @Override
     public void sendRequest(Request request) throws NotFriendsException, NetworkErrorException {
         requestNetworkController.post(request);
-
     }
 
     @Override

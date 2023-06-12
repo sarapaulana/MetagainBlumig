@@ -19,6 +19,7 @@ import com.metagain.frontend.network.controller.ProfileNetworkControllerImpl;
 import com.metagain.frontend.network.controller.RequestNetworkControllerImpl;
 
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -26,35 +27,19 @@ public class MeetingControllerTest {
 
     MeetingController meetingController = new MeetingControllerImpl();
 
-    ProfileController profileController = new ProfileControllerImpl();
-
-    RequestController requestController = new RequestControllerImpl();
-
-    ProfileNetworkControllerImpl profileNetworkController = new ProfileNetworkControllerImpl();
-
-    RequestNetworkControllerImpl requestNetworkController = new RequestNetworkControllerImpl();
 
     MeetingNetworkControllerImpl meetingNetworkControllerMock = Mockito.mock(MeetingNetworkControllerImpl.class);
+
+    @BeforeEach
+    void init(){
+        meetingController.insertNetworkController(meetingNetworkControllerMock);
+    }
 
 ///////////////////////////////update Meeting Point///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Test
     public void updateMeetingPointGoodMeetingControllerTest() throws CoordinatesFormatException, NetworkErrorException, InvalidEmailException, NotFriendsException {
 
-        profileController.insertNetworkController(profileNetworkController);
-        OwnProfile ownProfile1 = new OwnProfile("Grischa", "Storch", "grr1", "grischa.storch@gmail.com", "1234");
-        profileController.createAccount(ownProfile1);
-        profileController.insertNetworkController(profileNetworkController);
-        OwnProfile ownProfile2 = new OwnProfile("Grischa", "Storch", "grr2", "grischa.storch@gmail.com", "1234");
-        profileController.createAccount(ownProfile2);
-
-        Profile profile1 = new Profile("grr1");
-
-        Profile profile2 = new Profile("grr2");
-
-        Request request1 = new Request(profile1, RequestType.MEET);
-        requestController.sendRequest(request1);
-        requestController.acceptRequest(profile1.getId());
 
 
     }

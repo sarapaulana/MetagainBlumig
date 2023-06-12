@@ -111,19 +111,21 @@ public class ProfileControllerTest {
     public void loginGoodProfileTest() throws LoginException, NetworkErrorException, InvalidEmailException {
         profileController.insertNetworkController(profileNetworkControllerMock);
         OwnProfile ownProfile = new OwnProfile("Grischa", "Storch", "grr", "grischa.storch@gmail.com", "1234");
-        profileController.createAccount(ownProfile);
+
+        Mockito.when(profileNetworkControllerMock.get()).thenReturn(ownProfile);
         profileController.login("grr","1234");
 
         Mockito.verify(profileNetworkControllerMock).get();
     }
 
     @Test
-    public void loginExceptionProfileTest() throws LoginException, NetworkErrorException, InvalidEmailException {
+    public void loginExceptionProfileTest() throws LoginException, NetworkErrorException {
         profileController.insertNetworkController(profileNetworkControllerMock);
         OwnProfile ownProfile = new OwnProfile("Grischa", "Storch", "grr", "grischa.storch@gmail.com", "1234");
-        profileController.createAccount(ownProfile);
 
-        assertThrows(InvalidUsernameException.class, () ->{
+        Mockito.when(profileNetworkControllerMock.get()).thenThrow(LoginException.class);
+
+        assertThrows(LoginException.class, () ->{
             profileController.login("grr","12");
         });
     }

@@ -16,6 +16,13 @@ public class Friends implements Serializable {
 
     private boolean inRadius;
 
+    public Friends(UUID id, Profile friendsProfile, int radius, boolean inRadius) {
+        this.id = id;
+        this.friendsProfile = friendsProfile;
+        this.radius = radius;
+        this.inRadius = inRadius;
+    }
+
     public UUID getId() {
         return id;
     }

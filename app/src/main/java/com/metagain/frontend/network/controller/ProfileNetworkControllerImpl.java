@@ -124,6 +124,8 @@ public class ProfileNetworkControllerImpl implements Runnable {
             connected = 0;
             throw new NetworkErrorException();
         }
+
+        //TODO Exceptions (edit Username)
     }
 
 
