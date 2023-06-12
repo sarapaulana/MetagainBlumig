@@ -30,13 +30,12 @@ public class MapActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_map);
-        // Konfiguriere die osmdroid-Bibliothek
         Configuration.getInstance().load(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
         Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
 
 
-        // Initialisiere die MapView
         mapView = findViewById(R.id.mapView);
         mapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
         mapView.setMultiTouchControls(true);
