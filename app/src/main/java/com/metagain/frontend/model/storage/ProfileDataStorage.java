@@ -12,6 +12,10 @@ public class ProfileDataStorage {
 
     private static OwnProfile ownProfile;
 
+    private static double latitude;
+
+    private static double longitude;
+
     public static String getUsername() {
         return username;
     }
@@ -48,5 +52,21 @@ public class ProfileDataStorage {
         ProfileDataStorage.username = ownProfile.getUsername();
         ProfileDataStorage.password = ownProfile.getPassword();
         ProfileDataStorage.email = ownProfile.getEmail();
+    }
+
+    public static double getLatitude() {
+        return latitude;
+    }
+
+    public static void setLatitude(double latitude) {
+        ProfileDataStorage.latitude = latitude;
+    }
+
+    public static double getLongitude() {
+        return longitude;
+    }
+
+    public static void setLongitude(double longitude) {
+        ProfileDataStorage.longitude = longitude;
     }
 }

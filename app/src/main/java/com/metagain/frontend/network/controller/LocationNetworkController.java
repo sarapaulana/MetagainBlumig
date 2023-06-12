@@ -19,8 +19,14 @@ public class LocationNetworkController implements Runnable {
 
     private Response<?> response;
 
+    private String authorizationLastUser;
+
+    public LocationNetworkController(String authorizationLastUser) {
+        this.authorizationLastUser = authorizationLastUser;
+    }
+
     public void put(double[] location) throws NetworkErrorException {
-        call = locationNetworkService.put(NetworkConstants.AUTHORIZATION, location);
+        call = locationNetworkService.put(authorizationLastUser, location);
 
         Thread execute = new Thread(this);
         execute.start();
@@ -37,6 +43,11 @@ public class LocationNetworkController implements Runnable {
             connected = 0;
             throw new NetworkErrorException();
         }
+    }
+
+    public void putOnDestroy(double[] location) throws NetworkErrorException {
+        put(location);
+        authorizationLastUser = null;
     }
 
     @Override

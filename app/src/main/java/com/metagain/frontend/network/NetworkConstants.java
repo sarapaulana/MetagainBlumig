@@ -18,8 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkConstants {
 
-    //public static final String URL = "https://metagain-backend-production.up.railway.app/";
-    public static final String URL = "http://192.168.178.145:8080/";
+    public static final String URL = "https://metagain-backend-production.up.railway.app/";
+    //public static final String URL = "http://192.168.111.209:8080/";
 
     public static final String PROFILES = "profiles";
 

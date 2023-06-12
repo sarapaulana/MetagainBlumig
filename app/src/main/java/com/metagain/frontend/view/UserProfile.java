@@ -25,6 +25,7 @@ import com.metagain.frontend.exceptions.InvalidEmailException;
 import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.storage.ProfileDataStorage;
+import com.metagain.frontend.services.LocationService;
 
 public class UserProfile extends AppCompatActivity {
 
@@ -187,8 +188,10 @@ public class UserProfile extends AppCompatActivity {
         abmelden.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent serviceIntent = new Intent(UserProfile.this, LocationService.class);
+                stopService(serviceIntent);
                 profileController.logout();
+
                 toLogin();
             }
         });

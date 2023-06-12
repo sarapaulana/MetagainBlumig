@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.metagain.frontend.controll.UpdateLocationController;
 import com.metagain.frontend.controll.implementations.UpdateLocationControllerImpl;
+import com.metagain.frontend.model.storage.ProfileDataStorage;
 import com.metagain.frontend.network.NetworkConstants;
 
 import java.security.Provider;
@@ -28,6 +29,8 @@ public class LocationService extends Service {
 
     private Activity callingActivity;
     private UpdateLocationController updateLocationController = new UpdateLocationControllerImpl();
+
+
 
     @Override
     public void onCreate() {
@@ -49,7 +52,7 @@ public class LocationService extends Service {
         super.onDestroy();
         // Stoppe die Standortaktualisierungen
         stopLocationUpdates();
-        updateLocationController.updateLocation(new double[]{420,420});
+        updateLocationController.updateLocationOnDestroy(new double[]{420,420});
     }
 
     // Methode zum Starten der Standortaktualisierungen
@@ -59,8 +62,8 @@ public class LocationService extends Service {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
-                locationListener.onLocationChanged(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+                  locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+                  locationListener.onLocationChanged(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
 
             }
         } catch (Exception e) {
@@ -81,6 +84,8 @@ public class LocationService extends Service {
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
 
+            ProfileDataStorage.setLatitude(latitude);
+            ProfileDataStorage.setLongitude(longitude);
             updateLocationController.updateLocation(new double[] {latitude, longitude});
 
         }

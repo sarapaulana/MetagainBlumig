@@ -37,8 +37,9 @@ public class ProfileControllerImpl implements ProfileController {
     public void editUsername(String username) throws InvalidUsernameException, NetworkErrorException, InvalidEmailException {
         OwnProfile ownProfile = ProfileDataStorage.getOwnProfile();
         ownProfile.setUsername(username);
-        ProfileDataStorage.setUsername(username);
         profileNetworkController.put(ownProfile);
+        ProfileDataStorage.setUsername(username);
+
     }
 
     @Override
