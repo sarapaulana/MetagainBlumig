@@ -39,7 +39,7 @@ public class ProfileControllerImpl implements ProfileController {
         ownProfile.setUsername(username);
         profileNetworkController.put(ownProfile);
         ProfileDataStorage.setUsername(username);
-
+        NetworkConstants.setAuthorization(username, ProfileDataStorage.getPassword());
     }
 
     @Override
@@ -59,6 +59,7 @@ public class ProfileControllerImpl implements ProfileController {
         ownProfile.setPassword(password);
         ProfileDataStorage.setPassword(password);
         profileNetworkController.put(ownProfile);
+        NetworkConstants.setAuthorization(ProfileDataStorage.getUsername(), password);
     }
 
 

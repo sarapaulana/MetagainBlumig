@@ -13,6 +13,6 @@ public interface MeetingNetworkController {
 
     public void delete(UUID meetingID) throws NetworkErrorException;
 
-    //TODO Put/Update Methode
+    public void put(Meeting meeting) throws NetworkErrorException;
 
 }

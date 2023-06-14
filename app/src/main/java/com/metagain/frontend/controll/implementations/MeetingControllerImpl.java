@@ -15,8 +15,8 @@ public class MeetingControllerImpl implements MeetingController {
     private final MeetingNetworkController meetingNetworkController = new MeetingNetworkControllerImpl();
 
     @Override
-    public void updateMeetingPoint(double[] location) throws CoordinatesFormatException {
-
+    public void updateMeetingPoint(Meeting meeting) throws CoordinatesFormatException, NetworkErrorException {
+        meetingNetworkController.put(meeting);
     }
 
     @Override

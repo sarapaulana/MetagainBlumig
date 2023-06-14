@@ -203,11 +203,14 @@ public class Homepage extends AppCompatActivity {
     }
 
     public void createAllProfileCards() {
-        for (Friends friend: friendsList) {
-            createProfileCard(friend);
+        if (friendsList != null) {
+            for (Friends friend : friendsList) {
+                createProfileCard(friend);
+            }
         }
     }
 
+    @SuppressWarnings("deprecation")
     private boolean isServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {

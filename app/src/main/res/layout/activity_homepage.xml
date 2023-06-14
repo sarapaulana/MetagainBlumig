@@ -6,97 +6,115 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8F7F7"
-    android:backgroundTint="#F3EFEF"
+    android:backgroundTint="#FFFFFF"
     tools:context="com.metagain.frontend.view.Homepage">
 
     <ImageButton
         android:id="@+id/homeToProfile"
-        android:layout_width="73dp"
-        android:layout_height="73dp"
-        android:background="#673AB7"
-        android:contentDescription="requests"
+        android:layout_width="56dp"
+        android:layout_height="64dp"
+        android:background="#FFFFFF"
+        android:contentDescription="profile"
         android:scaleType="fitCenter"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintVertical_bias="0.49"
+        app:srcCompat="@drawable/_60_f_346839683_6napzbhpskipb8pmawufkc7c5ed7wyws" />
 
     <ImageButton
         android:id="@+id/homeToRequests"
         android:layout_width="73dp"
         android:layout_height="73dp"
-        android:background="#673AB7"
+        android:background="#FFFFFF"
         android:contentDescription="requests"
+        app:tint="#91A7B8"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        app:srcCompat="@android:drawable/ic_popup_reminder" />
+        app:layout_constraintVertical_bias="0.473"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
 
     <Button
         android:id="@+id/homeImRadius"
-        style="@android:style/Widget.DeviceDefault.Button.Inset"
-        android:layout_width="190dp"
+        android:layout_width="185dp"
         android:layout_height="60dp"
-        android:text="Im Radius"
+        android:backgroundTint="#AB62BC"
+        android:drawableTint="#005EA8"
+        android:foregroundTint="#025BA3"
+        android:text="In Radius"
+        android:textColor="#F8F8F8"
         app:layout_constraintBottom_toTopOf="@+id/scrollView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.932"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toEndOf="@+id/allFriends"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.952" />
+        app:layout_constraintVertical_bias="0.904"
+        app:rippleColor="#0151A8" />
 
     <ImageButton
         android:id="@+id/homeToMeetings"
         android:layout_width="73dp"
         android:layout_height="73dp"
-        android:background="#00BCD4"
+        android:background="#FFFFFF"
         android:contentDescription="meetings"
+        app:tint="#9EAAB5"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.476"
         app:srcCompat="@android:drawable/ic_dialog_map" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
-        android:fontFamily="monospace"
+        android:fontFamily="@font/krona_one"
         android:text="FRIENDS"
-        android:textColor="#000000"
+        android:textColor="#0C1A68"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/allFriends"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintHorizontal_bias="0.146"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.138" />
+        app:layout_constraintVertical_bias="0.671" />
 
     <Button
         android:id="@+id/allFriends"
-        style="@android:style/Widget.DeviceDefault.Button.Inset"
-        android:layout_width="207dp"
+        android:layout_width="185dp"
         android:layout_height="60dp"
         android:backgroundTint="#0E69AF"
-        android:text="Alle"
+        android:backgroundTintMode="add"
+        android:drawableTint="#005BA3"
+        android:foregroundTint="#0364B1"
+        android:foregroundTintMode="add"
+        android:text="All"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#005CA5"
+        android:textColorLink="#00579C"
+        app:iconTint="#005CA5"
+        app:iconTintMode="add"
         app:layout_constraintBottom_toTopOf="@+id/scrollView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.952" />
+        app:layout_constraintVertical_bias="0.904"
+        app:rippleColor="#AB62BC"
+        app:strokeColor="#0060AC"
+        tools:visibility="visible" />
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="376dp"
-        android:layout_height="379dp"
+        android:layout_width="383dp"
+        android:layout_height="373dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,16 +133,16 @@
 
     <Button
         android:id="@+id/buttonAddFriend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="61dp"
-        android:backgroundTint="#0E69AF"
-        android:text="ADD"
-        app:layout_constraintBottom_toTopOf="@+id/homeImRadius"
+        android:layout_width="56dp"
+        android:layout_height="47dp"
+        android:backgroundTint="#0C1A68"
+        android:text="+"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/allFriends"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.606"
+        app:layout_constraintHorizontal_bias="0.812"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/homeToProfile"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.659" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

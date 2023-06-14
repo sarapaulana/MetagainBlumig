@@ -10,7 +10,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#E8E7E7">
 
         <TextView
             android:id="@+id/textViewRadiusFriend"
@@ -18,7 +19,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="5dp"
-            android:text="" />
+            android:text=""
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/textViewNameFriend"
@@ -26,7 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|top"
             android:layout_marginTop="5dp"
-            android:text="Name" />
+            android:text="Name"
+            android:textColor="#000000" />
 
         <ImageButton
             android:id="@+id/buttonToContactProfile"
@@ -36,13 +39,8 @@
             android:backgroundTint="#00FFFFFF"
             android:contentDescription="Friend-Profile"
             app:srcCompat="@android:drawable/ic_menu_info_details"
-            app:tint="#673AB7" />
+            app:tint="#1AAAF8" />
 
-        <ImageView
-            android:id="@+id/imageViewProfilePic"
-            android:layout_width="65dp"
-            android:layout_height="51dp"
-            tools:srcCompat="@tools:sample/avatars" />
     </androidx.cardview.widget.CardView>
 
 

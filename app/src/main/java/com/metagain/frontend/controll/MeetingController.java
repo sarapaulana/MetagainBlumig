@@ -16,7 +16,7 @@ public interface MeetingController {
      * @param location der neue Treffpunkt in Form eines double Arrays, der Koordinaten enthält
      * @throws CoordinatesFormatException falls das double-Array nicht der Koordinatenform entspricht
      */
-    public void updateMeetingPoint(double[] location) throws CoordinatesFormatException;
+    public void updateMeetingPoint(Meeting meeting) throws CoordinatesFormatException, NetworkErrorException;
 
     /**
      * löscht das Meeting aus der Datenbank, indem eine delete-Funktion beim Network-Controller aufgerufen wird

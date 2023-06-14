@@ -44,13 +44,34 @@ public class MeetingNetworkControllerImpl implements MeetingNetworkController, R
             connected = 0;
             throw new NetworkErrorException();
         }
-
+        System.out.println(response.body());
         return (List<Meeting>) response.body();
     }
 
     @Override
     public void delete(UUID meetingID) throws NetworkErrorException {
         call = meetingNetworkService.delete(NetworkConstants.AUTHORIZATION, meetingID);
+
+        Thread execute = new Thread(this);
+        execute.start();
+
+        synchronized(this) {
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (connected == -1) {
+            connected = 0;
+            throw new NetworkErrorException();
+        }
+    }
+
+    @Override
+    public void put(Meeting meeting) throws NetworkErrorException {
+        call = meetingNetworkService.put(NetworkConstants.AUTHORIZATION, meeting);
 
         Thread execute = new Thread(this);
         execute.start();

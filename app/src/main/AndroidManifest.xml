@@ -60,6 +60,9 @@
             </intent-filter>
         </activity>
         <service android:name="com.metagain.frontend.services.LocationService" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

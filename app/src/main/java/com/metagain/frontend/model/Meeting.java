@@ -3,10 +3,11 @@ package com.metagain.frontend.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Data
-public class Meeting {
+public class Meeting implements Serializable {
 
     private UUID id;
 
@@ -24,5 +25,9 @@ public class Meeting {
 
     public double[] getMeetingPoint() {
         return meetingPoint;
+    }
+
+    public void setMeetingPoint(double[] meetingPoint) {
+        this.meetingPoint = meetingPoint;
     }
 }

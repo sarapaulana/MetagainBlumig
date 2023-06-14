@@ -52,9 +52,10 @@ public class MeetingsView extends AppCompatActivity {
         } catch (NetworkErrorException e) {
             Toast.makeText(this, "Network Error", Toast.LENGTH_SHORT);
         }
-
-        for (Meeting meeting: meetings) {
-            createOneCard(meeting);
+        if (meetings != null) {
+            for (Meeting meeting : meetings) {
+                createOneCard(meeting);
+            }
         }
     }
 
@@ -65,8 +66,11 @@ public class MeetingsView extends AppCompatActivity {
 
 
 
-    public void openMap() {
+    public void openMap(Meeting meeting) {
         Intent intent = new Intent(this, MapActivity.class);
+
+        intent.putExtra("meeting", meeting);
+
         startActivity(intent);
     }
 
@@ -78,7 +82,7 @@ public class MeetingsView extends AppCompatActivity {
         usernameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMap();
+                openMap(meeting);
             }
         });
 
@@ -96,5 +100,11 @@ public class MeetingsView extends AppCompatActivity {
         });
 
         parentLayout.addView(cardViewLayout);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        backToHome();
     }
 }
