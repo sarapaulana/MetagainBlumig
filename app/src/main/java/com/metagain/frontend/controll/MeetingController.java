@@ -13,7 +13,7 @@ public interface MeetingController {
     /**
      * setzt eine neue Location für das Treffen, in dem eine put-Funktion
      * beim Network-Controller aufgerufen wird
-     * @param location der neue Treffpunkt in Form eines double Arrays, der Koordinaten enthält
+     * @param meeting das Meeting mit dem neuen Treffpunkt
      * @throws CoordinatesFormatException falls das double-Array nicht der Koordinatenform entspricht
      */
     public void updateMeetingPoint(Meeting meeting) throws CoordinatesFormatException, NetworkErrorException;
