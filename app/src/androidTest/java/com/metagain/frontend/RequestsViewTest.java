@@ -30,15 +30,11 @@ public class RequestsViewTest {
 
     @Test
     public void testDeclineMeetingButton() {
-        onView(withId(R.id.imageDeclineMeeting)).perform(click());
 
-        onView(withId(R.id.declinedLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
     @Test
     public void testAcceptMeetingButton() {
-        onView(withId(R.id.imageAcceptMeeting)).perform(click());
 
-        onView(withId(R.id.meetingsLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 }

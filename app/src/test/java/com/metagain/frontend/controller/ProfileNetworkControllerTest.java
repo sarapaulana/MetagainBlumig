@@ -80,16 +80,13 @@ public class ProfileNetworkControllerTest {
     }
 
     @Test
-    public void editUsernameInvalidProfileTest() throws InvalidUsernameException, NetworkErrorException, InvalidEmailException, UsernameAlreadyExistsException {
+    public void editUsernameInvalidProfileTest() throws NetworkErrorException, InvalidEmailException, UsernameAlreadyExistsException {
         profileController.insertNetworkController(profileNetworkControllerMock);
-        OwnProfile ownProfile = new OwnProfile("Grischa", "Storch", "grr", "grischa.storch@gmail.com", "1234");
-        profileController.createAccount(ownProfile);
-        OwnProfile ownProfile2 = new OwnProfile("Grischa", "Storch", "grrischa", "grischa.storch@gmail.com", "1234");
-        profileController.createAccount(ownProfile2);
+
 
 
         assertThrows(InvalidUsernameException.class, () ->{
-            profileController.editUsername("grrischa");
+            profileController.editUsername("gr");
         });
     }
 
