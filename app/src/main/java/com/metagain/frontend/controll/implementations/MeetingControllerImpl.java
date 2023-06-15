@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public class MeetingControllerImpl implements MeetingController {
 
-    private final MeetingNetworkController meetingNetworkController = new MeetingNetworkControllerImpl();
+    private MeetingNetworkController meetingNetworkController = new MeetingNetworkControllerImpl();
 
     @Override
     public void updateMeetingPoint(Meeting meeting) throws CoordinatesFormatException, NetworkErrorException {
@@ -31,6 +31,6 @@ public class MeetingControllerImpl implements MeetingController {
 
     @Override
     public void insertNetworkController(MeetingNetworkController meetingNetworkController) {
-
+        this.meetingNetworkController = meetingNetworkController;
     }
 }
