@@ -6,14 +6,15 @@ import com.metagain.frontend.exceptions.InvalidEmailException;
 import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.LoginException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
+import com.metagain.frontend.exceptions.UsernameAlreadyExistsException;
 import com.metagain.frontend.model.OwnProfile;
-import com.metagain.frontend.network.controller.ProfileNetworkControllerImpl;
+import com.metagain.frontend.network.controller.implementations.ProfileNetworkControllerImpl;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ProfileControllerTest {
+public class ProfileNetworkControllerTest {
 
     ProfileController profileController = new ProfileControllerImpl();
 
@@ -23,7 +24,7 @@ public class ProfileControllerTest {
 
 //////////////////////////////////////////Create Profile////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
-    public void emailGoodCreateProfileTest() throws NetworkErrorException, InvalidEmailException {
+    public void emailGoodCreateProfileTest() throws NetworkErrorException, InvalidUsernameException, UsernameAlreadyExistsException, InvalidEmailException {
         profileController.insertNetworkController(profileNetworkControllerMock);
         OwnProfile ownProfile = new OwnProfile("Grischa", "Storch", "grr", "grischa.storch@gmail.com", "1234");
         profileController.createAccount(ownProfile);
@@ -44,7 +45,7 @@ public class ProfileControllerTest {
 
 ////////////////////////////////////////Edit Email ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
-    public void editEmailGoodProfileTest() throws NetworkErrorException, InvalidEmailException, InvalidUsernameException {
+    public void editEmailGoodProfileTest() throws NetworkErrorException, InvalidEmailException, InvalidUsernameException, UsernameAlreadyExistsException {
 
         profileController.insertNetworkController(profileNetworkControllerMock);
         OwnProfile ownProfile = new OwnProfile("Grischa", "Storch", "grr", "grischa.storch@gmail.com", "1234");
@@ -55,7 +56,7 @@ public class ProfileControllerTest {
     }
 
     @Test
-    public void editEmailInvalidProfileTest() throws NetworkErrorException, InvalidEmailException, InvalidUsernameException {
+    public void editEmailInvalidProfileTest() throws NetworkErrorException, InvalidEmailException, InvalidUsernameException, UsernameAlreadyExistsException {
         profileController.insertNetworkController(profileNetworkControllerMock);
         OwnProfile ownProfile = new OwnProfile("Grischa", "Storch", "grr", "grischa.storch@gmail.com", "1234");
         profileController.createAccount(ownProfile);
@@ -69,7 +70,7 @@ public class ProfileControllerTest {
 //////////////////////////Edit Username///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Test
-    public void editUsernameGoodProfileTest() throws InvalidUsernameException, NetworkErrorException, InvalidEmailException {
+    public void editUsernameGoodProfileTest() throws InvalidUsernameException, NetworkErrorException, InvalidEmailException, UsernameAlreadyExistsException {
         profileController.insertNetworkController(profileNetworkControllerMock);
         OwnProfile ownProfile = new OwnProfile("Grischa", "Storch", "grr", "grischa.storch@gmail.com", "1234");
         profileController.createAccount(ownProfile);
@@ -79,7 +80,7 @@ public class ProfileControllerTest {
     }
 
     @Test
-    public void editUsernameInvalidProfileTest() throws InvalidUsernameException, NetworkErrorException, InvalidEmailException {
+    public void editUsernameInvalidProfileTest() throws InvalidUsernameException, NetworkErrorException, InvalidEmailException, UsernameAlreadyExistsException {
         profileController.insertNetworkController(profileNetworkControllerMock);
         OwnProfile ownProfile = new OwnProfile("Grischa", "Storch", "grr", "grischa.storch@gmail.com", "1234");
         profileController.createAccount(ownProfile);
@@ -95,7 +96,7 @@ public class ProfileControllerTest {
 /////////////////////////Edit Password////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Test
-    public void editPasswordGoodProfileTest() throws InvalidEmailException, InvalidUsernameException, NetworkErrorException{
+    public void editPasswordGoodProfileTest() throws InvalidEmailException, InvalidUsernameException, NetworkErrorException, UsernameAlreadyExistsException {
         profileController.insertNetworkController(profileNetworkControllerMock);
         OwnProfile ownProfile = new OwnProfile("Grischa", "Storch", "grr", "grischa.storch@gmail.com", "1234");
         profileController.createAccount(ownProfile);
@@ -135,7 +136,7 @@ public class ProfileControllerTest {
 //////////////////////Delete//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Test
-    public void deleteGoodProfileTest() throws NetworkErrorException, InvalidEmailException{
+    public void deleteGoodProfileTest() throws NetworkErrorException, InvalidEmailException, UsernameAlreadyExistsException, InvalidUsernameException {
         profileController.insertNetworkController(profileNetworkControllerMock);
         OwnProfile ownProfile = new OwnProfile("Grischa", "Storch", "grr", "grischa.storch@gmail.com", "1234");
         profileController.createAccount(ownProfile);

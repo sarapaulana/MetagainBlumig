@@ -14,8 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.metagain.frontend.R;
 import com.metagain.frontend.controll.RequestController;
 import com.metagain.frontend.controll.implementations.RequestControllerImpl;
+import com.metagain.frontend.exceptions.InvalidRadiusException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.exceptions.NotFriendsException;
+import com.metagain.frontend.exceptions.handler.ActivityExceptionHandler;
 import com.metagain.frontend.model.Friends;
 import com.metagain.frontend.model.Request;
 import com.metagain.frontend.model.types.RequestType;
@@ -29,6 +31,8 @@ public class SendRadiusRequest extends AppCompatActivity {
     EditText radiusInput;
 
     RequestController requestController = new RequestControllerImpl();
+
+    ActivityExceptionHandler activityExceptionHandler = new ActivityExceptionHandler(this);
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -47,19 +51,19 @@ public class SendRadiusRequest extends AppCompatActivity {
         sendRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Request request = new Request(friends.getFriendsProfile(), RequestType.RADIUS);
 
                 try {
                     int radius = Integer.parseInt(radiusInput.getText().toString());
-                    request.setRadius(radius);
-                    requestController.sendRequest(request);
+                    requestController.sendRadiusRequest(friends.getFriendsProfile(), radius);
 
                 } catch (NotFriendsException e) {
-                    Toast.makeText(SendRadiusRequest.this, "No Friend!", Toast.LENGTH_SHORT).show();
+                    activityExceptionHandler.handleNotFriendsExcpetion();
                 } catch (NetworkErrorException e) {
-                    Toast.makeText(SendRadiusRequest.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                    activityExceptionHandler.handleNetworkErrorException();
                 } catch (NumberFormatException e) {
                     Toast.makeText(SendRadiusRequest.this, "Invalid Input!", Toast.LENGTH_SHORT).show();
+                } catch (InvalidRadiusException e) {
+                    activityExceptionHandler.handleInvalidRadiusException();
                 }
                 openHompage();
             }

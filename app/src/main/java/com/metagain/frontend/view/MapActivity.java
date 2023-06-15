@@ -19,6 +19,7 @@ import com.metagain.frontend.controll.MeetingController;
 import com.metagain.frontend.controll.implementations.MeetingControllerImpl;
 import com.metagain.frontend.exceptions.CoordinatesFormatException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
+import com.metagain.frontend.exceptions.handler.ActivityExceptionHandler;
 import com.metagain.frontend.model.Friends;
 import com.metagain.frontend.model.Meeting;
 import com.metagain.frontend.model.storage.ProfileDataStorage;
@@ -43,10 +44,6 @@ public class MapActivity extends AppCompatActivity  {
 
     private double maxZoom = 19;
 
-    private static int a = 0;
-
-    private boolean isMarkingPoint;
-
     private double[] markedMeetingPoint;
 
     private MeetingController meetingController = new MeetingControllerImpl();
@@ -54,6 +51,8 @@ public class MapActivity extends AppCompatActivity  {
     private Button confirmMeetingPoint;
 
     private ItemizedIconOverlay<OverlayItem> markerOverlay;
+
+    ActivityExceptionHandler activityExceptionHandler = new ActivityExceptionHandler(this);
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -73,9 +72,9 @@ public class MapActivity extends AppCompatActivity  {
                     meetingController.updateMeetingPoint(meeting);
                     backToMeetings();
                 } catch (CoordinatesFormatException e) {
-                    //TODO
+                    activityExceptionHandler.handleCoordinatesFormatException();
                 } catch (NetworkErrorException e) {
-                    Toast.makeText(MapActivity.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    activityExceptionHandler.handleNetworkErrorException();
                 }
 
             }

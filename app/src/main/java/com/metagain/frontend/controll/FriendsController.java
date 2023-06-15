@@ -2,7 +2,7 @@ package com.metagain.frontend.controll;
 
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.Friends;
-import com.metagain.frontend.network.FriendsNetworkController;
+import com.metagain.frontend.network.controller.FriendsNetworkController;
 
 import java.util.List;
 import java.util.UUID;

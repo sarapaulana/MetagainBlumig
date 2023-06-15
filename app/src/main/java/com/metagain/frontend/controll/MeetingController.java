@@ -3,7 +3,7 @@ package com.metagain.frontend.controll;
 import com.metagain.frontend.exceptions.CoordinatesFormatException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.Meeting;
-import com.metagain.frontend.network.MeetingNetworkController;
+import com.metagain.frontend.network.controller.MeetingNetworkController;
 
 import java.util.List;
 import java.util.UUID;

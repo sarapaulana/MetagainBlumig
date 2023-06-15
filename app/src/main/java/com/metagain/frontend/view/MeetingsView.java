@@ -15,6 +15,7 @@ import com.metagain.frontend.R;
 import com.metagain.frontend.controll.MeetingController;
 import com.metagain.frontend.controll.implementations.MeetingControllerImpl;
 import com.metagain.frontend.exceptions.NetworkErrorException;
+import com.metagain.frontend.exceptions.handler.ActivityExceptionHandler;
 import com.metagain.frontend.model.Meeting;
 
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class MeetingsView extends AppCompatActivity {
     MeetingController meetingController = new MeetingControllerImpl();
 
     LinearLayout parentLayout;
+
+    ActivityExceptionHandler activityExceptionHandler = new ActivityExceptionHandler(this);
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -50,7 +53,7 @@ public class MeetingsView extends AppCompatActivity {
         try {
             meetings = meetingController.getMeetings();
         } catch (NetworkErrorException e) {
-            Toast.makeText(this, "Network Error", Toast.LENGTH_SHORT);
+            activityExceptionHandler.handleNetworkErrorException();
         }
         if (meetings != null) {
             for (Meeting meeting : meetings) {
@@ -94,7 +97,7 @@ public class MeetingsView extends AppCompatActivity {
                     meetingController.deleteMeeting(meeting.getId());
                     parentLayout.removeView(cardViewLayout);
                 } catch (NetworkErrorException e) {
-                    Toast.makeText(MeetingsView.this, "Network Error", Toast.LENGTH_SHORT);
+                    activityExceptionHandler.handleNetworkErrorException();
                 }
             }
         });

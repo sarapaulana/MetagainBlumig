@@ -5,11 +5,13 @@ import com.metagain.frontend.exceptions.InvalidEmailException;
 import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.LoginException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
+import com.metagain.frontend.exceptions.UsernameAlreadyExistsException;
 import com.metagain.frontend.model.OwnProfile;
 import com.metagain.frontend.model.storage.ProfileDataStorage;
 import com.metagain.frontend.network.NetworkConstants;
-import com.metagain.frontend.network.controller.ProfileNetworkControllerImpl;
+import com.metagain.frontend.network.controller.implementations.ProfileNetworkControllerImpl;
 import com.metagain.frontend.validator.EmailValidator;
+import com.metagain.frontend.validator.UsernameValidator;
 
 
 public class ProfileControllerImpl implements ProfileController {
@@ -18,9 +20,11 @@ public class ProfileControllerImpl implements ProfileController {
 
 
     @Override
-    public void createAccount(OwnProfile ownProfile) throws InvalidEmailException, NetworkErrorException {
+    public void createAccount(OwnProfile ownProfile) throws InvalidUsernameException, NetworkErrorException, UsernameAlreadyExistsException {
         if (!EmailValidator.isValidEmail(ownProfile.getEmail())) {
-            throw new InvalidEmailException();
+            throw new InvalidUsernameException();
+        } else if (!UsernameValidator.isValidUsername(ownProfile.getUsername())) {
+            throw new InvalidUsernameException();
         }
         profileNetworkController.post(ownProfile);
 
@@ -34,7 +38,10 @@ public class ProfileControllerImpl implements ProfileController {
     }
 
     @Override
-    public void editUsername(String username) throws InvalidUsernameException, NetworkErrorException, InvalidEmailException {
+    public void editUsername(String username) throws InvalidUsernameException, NetworkErrorException, UsernameAlreadyExistsException {
+        if (!UsernameValidator.isValidUsername(username)) {
+            throw new InvalidUsernameException();
+        }
         OwnProfile ownProfile = ProfileDataStorage.getOwnProfile();
         ownProfile.setUsername(username);
         profileNetworkController.put(ownProfile);
@@ -43,22 +50,30 @@ public class ProfileControllerImpl implements ProfileController {
     }
 
     @Override
-    public void editEmail(String email) throws InvalidEmailException, NetworkErrorException, InvalidUsernameException {
+    public void editEmail(String email) throws InvalidEmailException, NetworkErrorException {
         if (!EmailValidator.isValidEmail(email)) {
             throw new InvalidEmailException();
         }
         OwnProfile ownProfile = ProfileDataStorage.getOwnProfile();
         ownProfile.setEmail(email);
         ProfileDataStorage.setEmail(email);
-        profileNetworkController.put(ownProfile);
+        try {
+            profileNetworkController.put(ownProfile);
+        } catch (UsernameAlreadyExistsException e) {
+            //wont happen
+        }
     }
 
     @Override
-    public void editPassword(String password) throws InvalidEmailException, InvalidUsernameException, NetworkErrorException {
+    public void editPassword(String password) throws  NetworkErrorException {
         OwnProfile ownProfile = ProfileDataStorage.getOwnProfile();
         ownProfile.setPassword(password);
         ProfileDataStorage.setPassword(password);
-        profileNetworkController.put(ownProfile);
+        try {
+            profileNetworkController.put(ownProfile);
+        } catch (UsernameAlreadyExistsException e) {
+            //wont happen
+        }
         NetworkConstants.setAuthorization(ProfileDataStorage.getUsername(), password);
     }
 
@@ -93,6 +108,20 @@ public class ProfileControllerImpl implements ProfileController {
         ProfileDataStorage.setUsername("");
         ProfileDataStorage.setEmail("");
         ProfileDataStorage.setPassword("");
+
+
+    }
+
+    @Override
+    public void setIncognito(boolean incognito) throws NetworkErrorException {
+        OwnProfile ownProfile = ProfileDataStorage.getOwnProfile();
+        ownProfile.setIncognito(incognito);
+        try {
+            profileNetworkController.put(ownProfile);
+        } catch (UsernameAlreadyExistsException e) {
+            //wont happen
+        }
+        ProfileDataStorage.setIncognito(incognito);
     }
 
     @Override

@@ -4,13 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.metagain.frontend.controll.RequestController;
 import com.metagain.frontend.controll.implementations.RequestControllerImpl;
-import com.metagain.frontend.exceptions.LoginException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.exceptions.NotFriendsException;
 import com.metagain.frontend.model.Profile;
 import com.metagain.frontend.model.Request;
 import com.metagain.frontend.model.types.RequestType;
-import com.metagain.frontend.network.controller.RequestNetworkControllerImpl;
+import com.metagain.frontend.network.controller.implementations.RequestNetworkControllerImpl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,8 +38,8 @@ public class RequestControllerTest {
 
         Request r1 = new Request(p1, RequestType.MEET);
 
-        requestController.sendRequest(r1);
-        Mockito.verify(requestNetworkControllerMock).post(r1);
+        requestController.sendMeetingRequest(p1);
+        Mockito.verify(requestNetworkControllerMock).post(r1); //TODO
     }
 
     @Test
@@ -52,7 +51,7 @@ public class RequestControllerTest {
         //TODO notFriendsException auslösen
 
         assertThrows(NotFriendsException.class, () ->{
-            requestController.sendRequest(r1);
+            requestController.sendMeetingRequest(p1);
         });
     }
 

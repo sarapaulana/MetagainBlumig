@@ -15,6 +15,7 @@ import com.metagain.frontend.R;
 import com.metagain.frontend.controll.RequestController;
 import com.metagain.frontend.controll.implementations.RequestControllerImpl;
 import com.metagain.frontend.exceptions.NetworkErrorException;
+import com.metagain.frontend.exceptions.handler.ActivityExceptionHandler;
 import com.metagain.frontend.model.Request;
 import com.metagain.frontend.model.types.RequestType;
 
@@ -25,13 +26,12 @@ import java.util.List;
 public class RequestsView extends AppCompatActivity {
 
     ImageButton alertsBack;
-    ImageButton declineMeeting;
-
-    ImageButton acceptMeeting;
 
     RequestController requestController = new RequestControllerImpl();
 
     LinearLayout parentLayout;
+
+    ActivityExceptionHandler activityExceptionHandler = new ActivityExceptionHandler(this);
 
 
 
@@ -62,7 +62,7 @@ public class RequestsView extends AppCompatActivity {
             requestList = requestController.getRequests();
 
         } catch (NetworkErrorException e) {
-            Toast.makeText(RequestsView.this, "Network Error", Toast.LENGTH_SHORT).show();
+            activityExceptionHandler.handleNetworkErrorException();
         }
 
         for (Request request: requestList) {
@@ -108,7 +108,7 @@ public class RequestsView extends AppCompatActivity {
                     requestController.deleteRequest(request.getId());
                     parentLayout.removeView(cardViewLayout);
                 } catch (NetworkErrorException e) {
-                    Toast.makeText(RequestsView.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    activityExceptionHandler.handleNetworkErrorException();
                 }
             }
         });
@@ -122,7 +122,7 @@ public class RequestsView extends AppCompatActivity {
                     requestController.acceptRequest(request.getId());
                     parentLayout.removeView(cardViewLayout);
                 } catch (NetworkErrorException e) {
-                    Toast.makeText(RequestsView.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    activityExceptionHandler.handleNetworkErrorException();
                 }
             }
         });

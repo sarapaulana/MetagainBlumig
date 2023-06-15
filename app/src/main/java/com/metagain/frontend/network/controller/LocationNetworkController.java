@@ -1,70 +1,11 @@
 package com.metagain.frontend.network.controller;
 
 import com.metagain.frontend.exceptions.NetworkErrorException;
-import com.metagain.frontend.network.NetworkConstants;
-import com.metagain.frontend.network.services.LocationNetworkService;
 
-import java.io.IOException;
+public interface LocationNetworkController {
 
-import retrofit2.Call;
-import retrofit2.Response;
+    public void put(double[] location) throws NetworkErrorException;
 
-public class LocationNetworkController implements Runnable {
+    public void putOnDestroy(double[] location) throws NetworkErrorException;
 
-    LocationNetworkService locationNetworkService = NetworkConstants.createLocationNetworkService();
-
-    private int connected = 0;
-
-    private Call<?> call;
-
-    private Response<?> response;
-
-    private String authorizationLastUser;
-
-    public LocationNetworkController(String authorizationLastUser) {
-        this.authorizationLastUser = authorizationLastUser;
-    }
-
-    public void put(double[] location) throws NetworkErrorException {
-        call = locationNetworkService.put(authorizationLastUser, location);
-
-        Thread execute = new Thread(this);
-        execute.start();
-
-        synchronized(this) {
-            try {
-                this.wait();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        if (connected == -1) {
-            connected = 0;
-            throw new NetworkErrorException();
-        }
-    }
-
-    public void putOnDestroy(double[] location) throws NetworkErrorException {
-        put(location);
-        authorizationLastUser = null;
-    }
-
-    @Override
-    public void run() {
-        try {
-            synchronized (this) {
-                response = call.execute();
-                call = null;
-                System.out.println(response.code());
-            }
-        } catch (IOException e) {
-            connected = -1;
-        } catch (Throwable throwable) {
-            System.out.println(throwable.getLocalizedMessage());
-        }
-        synchronized (this) {
-            this.notify();
-        }
-    }
 }

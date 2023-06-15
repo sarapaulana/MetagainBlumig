@@ -15,6 +15,7 @@ import com.metagain.frontend.controll.RequestController;
 import com.metagain.frontend.controll.implementations.RequestControllerImpl;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.exceptions.NotFriendsException;
+import com.metagain.frontend.exceptions.handler.ActivityExceptionHandler;
 import com.metagain.frontend.model.Profile;
 import com.metagain.frontend.model.Request;
 import com.metagain.frontend.model.types.RequestType;
@@ -26,6 +27,8 @@ public class SendFollowRequest extends AppCompatActivity {
     private Button buttonSendRequest;
 
     private RequestController requestController = new RequestControllerImpl();
+
+    ActivityExceptionHandler activityExceptionHandler = new ActivityExceptionHandler(this);
 
     @SuppressLint({"MissingInflatedId"})
     @Override
@@ -40,15 +43,10 @@ public class SendFollowRequest extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String username = etUserToFollow.getText().toString();
-                Profile profile = new Profile(username);
-                Request request = new Request(profile, RequestType.FOLLOW);
                 try {
-                    requestController.sendRequest(request);
-                } catch (NotFriendsException e) {
-                    //ignore
-                    System.out.println("foo");
+                    requestController.sendFollowRequest(username);
                 } catch (NetworkErrorException e) {
-                    Toast.makeText(SendFollowRequest.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    activityExceptionHandler.handleNetworkErrorException();
                 }
                 backToHome();
             }

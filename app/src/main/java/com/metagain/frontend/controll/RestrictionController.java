@@ -1,6 +1,6 @@
 package com.metagain.frontend.controll;
 
-import com.metagain.frontend.network.RestrictionNetworkController;
+import com.metagain.frontend.network.controller.RestrictionNetworkController;
 
 import java.util.UUID;
 

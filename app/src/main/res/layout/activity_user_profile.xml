@@ -187,7 +187,7 @@
     </LinearLayout>
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/switchIncognito"
         android:layout_width="57dp"
         android:layout_height="53dp"
         android:switchTextAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -208,7 +208,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch1"
+        app:layout_constraintTop_toBottomOf="@+id/switchIncognito"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton

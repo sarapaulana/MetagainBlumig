@@ -4,8 +4,8 @@ import com.metagain.frontend.controll.MeetingController;
 import com.metagain.frontend.exceptions.CoordinatesFormatException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.Meeting;
-import com.metagain.frontend.network.MeetingNetworkController;
-import com.metagain.frontend.network.controller.MeetingNetworkControllerImpl;
+import com.metagain.frontend.network.controller.MeetingNetworkController;
+import com.metagain.frontend.network.controller.implementations.MeetingNetworkControllerImpl;
 
 import java.util.List;
 import java.util.UUID;

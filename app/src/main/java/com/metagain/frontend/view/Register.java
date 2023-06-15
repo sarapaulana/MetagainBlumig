@@ -14,7 +14,10 @@ import com.metagain.frontend.R;
 import com.metagain.frontend.controll.ProfileController;
 import com.metagain.frontend.controll.implementations.ProfileControllerImpl;
 import com.metagain.frontend.exceptions.InvalidEmailException;
+import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
+import com.metagain.frontend.exceptions.UsernameAlreadyExistsException;
+import com.metagain.frontend.exceptions.handler.ActivityExceptionHandler;
 import com.metagain.frontend.model.OwnProfile;
 
 public class Register extends AppCompatActivity {
@@ -24,6 +27,8 @@ public class Register extends AppCompatActivity {
     private EditText etFirstName, etLastName, etUsername, etEmail, etPassword;
 
     private ProfileController profileController = new ProfileControllerImpl();
+
+    ActivityExceptionHandler activityExceptionHandler = new ActivityExceptionHandler(this);
 
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
@@ -52,10 +57,14 @@ public class Register extends AppCompatActivity {
                 try {
                     Register.this.profileController.createAccount(ownProfile);
                     openHomepage();
-                } catch (InvalidEmailException e) {
-                    Toast.makeText(Register.this, "Invalid Email", Toast.LENGTH_SHORT).show();
+                } catch (InvalidUsernameException e) {
+                    activityExceptionHandler.handleInvalidUsernameException();
                 } catch (NetworkErrorException e) {
-                    Toast.makeText(Register.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    activityExceptionHandler.handleNetworkErrorException();
+                } catch (InvalidEmailException e) {
+                    activityExceptionHandler.handleInvalidEmailExcpeption();
+                } catch (UsernameAlreadyExistsException e) {
+                    activityExceptionHandler.handleUsernameAlreadyExistsException();
                 }
 
 

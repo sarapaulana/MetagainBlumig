@@ -21,7 +21,9 @@ import com.metagain.frontend.R;
 import com.metagain.frontend.controll.FriendsController;
 import com.metagain.frontend.controll.implementations.FriendsControllerImpl;
 import com.metagain.frontend.exceptions.NetworkErrorException;
+import com.metagain.frontend.exceptions.handler.ActivityExceptionHandler;
 import com.metagain.frontend.model.Friends;
+import com.metagain.frontend.model.storage.ProfileDataStorage;
 import com.metagain.frontend.services.LocationService;
 
 import java.util.List;
@@ -43,9 +45,8 @@ public class Homepage extends AppCompatActivity {
 
     LinearLayout scrollView;
 
+    ActivityExceptionHandler activityExceptionHandler = new ActivityExceptionHandler(this);
 
-
-    boolean inRadius;
 
     @SuppressLint({"MissingInflatedId"})
     @Override
@@ -53,7 +54,7 @@ public class Homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        if (!isServiceRunning(LocationService.class)) {
+        if (!isServiceRunning(LocationService.class) && !ProfileDataStorage.isIncognito()) {
             ActivityCompat.requestPermissions(this, new String[] {
                     Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION
@@ -93,12 +94,12 @@ public class Homepage extends AppCompatActivity {
         inRadiusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!inRadius) {
+
                     scrollView.removeAllViews();
                     showFriendsInRadius();
                     createAllProfileCards();
-                    inRadius = true;
-                }
+
+
             }
         });
 
@@ -108,12 +109,10 @@ public class Homepage extends AppCompatActivity {
         allFriendsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (inRadius) {
+
                     scrollView.removeAllViews();
                     showAllFriends();
                     createAllProfileCards();
-                    inRadius = false;
-                }
             }
         });
 
@@ -189,7 +188,7 @@ public class Homepage extends AppCompatActivity {
         try {
             friendsList = friendsController.getFriends();
         } catch (NetworkErrorException e) {
-            Toast.makeText(Homepage.this, "Network Error", Toast.LENGTH_SHORT).show();
+            activityExceptionHandler.handleNetworkErrorException();
         }
     }
 
@@ -198,7 +197,7 @@ public class Homepage extends AppCompatActivity {
             friendsList = friendsController.getFriendsInRadius();
 
         } catch (NetworkErrorException e) {
-            Toast.makeText(Homepage.this, "Network Error", Toast.LENGTH_SHORT).show();
+            activityExceptionHandler.handleNetworkErrorException();
         }
     }
 

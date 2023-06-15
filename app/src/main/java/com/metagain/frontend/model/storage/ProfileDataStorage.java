@@ -10,6 +10,8 @@ public class ProfileDataStorage {
 
     private static String email;
 
+    private static boolean incognito;
+
     private static OwnProfile ownProfile;
 
     private static double latitude;
@@ -52,10 +54,20 @@ public class ProfileDataStorage {
         ProfileDataStorage.username = ownProfile.getUsername();
         ProfileDataStorage.password = ownProfile.getPassword();
         ProfileDataStorage.email = ownProfile.getEmail();
+        ProfileDataStorage.incognito = ownProfile.isIncognito();
     }
 
     public static double getLatitude() {
         return latitude;
+    }
+
+    public static boolean isIncognito() {
+        return incognito;
+    }
+
+    public static void setIncognito(boolean incognito) {
+        ProfileDataStorage.incognito = incognito;
+        ownProfile.setIncognito(incognito);
     }
 
     public static void setLatitude(double latitude) {

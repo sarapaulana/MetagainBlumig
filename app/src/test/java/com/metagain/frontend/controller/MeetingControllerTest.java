@@ -1,22 +1,12 @@
 package com.metagain.frontend.controller;
 
 import com.metagain.frontend.controll.MeetingController;
-import com.metagain.frontend.controll.ProfileController;
-import com.metagain.frontend.controll.RequestController;
 import com.metagain.frontend.controll.implementations.MeetingControllerImpl;
-import com.metagain.frontend.controll.implementations.ProfileControllerImpl;
-import com.metagain.frontend.controll.implementations.RequestControllerImpl;
 import com.metagain.frontend.exceptions.CoordinatesFormatException;
 import com.metagain.frontend.exceptions.InvalidEmailException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.exceptions.NotFriendsException;
-import com.metagain.frontend.model.OwnProfile;
-import com.metagain.frontend.model.Profile;
-import com.metagain.frontend.model.Request;
-import com.metagain.frontend.model.types.RequestType;
-import com.metagain.frontend.network.controller.MeetingNetworkControllerImpl;
-import com.metagain.frontend.network.controller.ProfileNetworkControllerImpl;
-import com.metagain.frontend.network.controller.RequestNetworkControllerImpl;
+import com.metagain.frontend.network.controller.implementations.MeetingNetworkControllerImpl;
 
 
 import org.junit.jupiter.api.BeforeEach;

@@ -18,6 +18,7 @@ import com.metagain.frontend.controll.implementations.FriendsControllerImpl;
 import com.metagain.frontend.controll.implementations.RequestControllerImpl;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.exceptions.NotFriendsException;
+import com.metagain.frontend.exceptions.handler.ActivityExceptionHandler;
 import com.metagain.frontend.model.Friends;
 import com.metagain.frontend.model.Request;
 import com.metagain.frontend.model.types.RequestType;
@@ -42,6 +43,8 @@ public class ContactProfile extends AppCompatActivity {
 
     FriendsController friendsController = new FriendsControllerImpl();
 
+    ActivityExceptionHandler activityExceptionHandler = new ActivityExceptionHandler(this);
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +59,14 @@ public class ContactProfile extends AppCompatActivity {
             requestMeeting.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Request request = new Request(friends.getFriendsProfile(), RequestType.MEET);
+
                     try {
-                        requestController.sendRequest(request);
+                        requestController.sendMeetingRequest(friends.getFriendsProfile());
                         backToHome();
                     } catch (NotFriendsException e) {
-                        Toast.makeText(ContactProfile.this, "No Friends!", Toast.LENGTH_SHORT).show();
+                        activityExceptionHandler.handleNotFriendsExcpetion();
                     } catch (NetworkErrorException e) {
-                        Toast.makeText(ContactProfile.this, "Network Error", Toast.LENGTH_SHORT).show();
+                        activityExceptionHandler.handleNetworkErrorException();
                     }
                 }
             });
@@ -89,7 +92,7 @@ public class ContactProfile extends AppCompatActivity {
                     friendsController.deleteFriend(friends.getId());
                     backToHome();
                 } catch (NetworkErrorException e) {
-                    Toast.makeText(ContactProfile.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    activityExceptionHandler.handleNetworkErrorException();
                 }
             }
         });

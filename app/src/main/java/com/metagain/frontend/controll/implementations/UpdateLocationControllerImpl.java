@@ -3,16 +3,16 @@ package com.metagain.frontend.controll.implementations;
 import com.metagain.frontend.controll.UpdateLocationController;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.network.NetworkConstants;
-import com.metagain.frontend.network.controller.LocationNetworkController;
+import com.metagain.frontend.network.controller.implementations.LocationNetworkControllerImpl;
 
 public class UpdateLocationControllerImpl implements UpdateLocationController {
 
-    LocationNetworkController locationNetworkController = new LocationNetworkController(NetworkConstants.AUTHORIZATION);
+    LocationNetworkControllerImpl locationNetworkControllerImpl = new LocationNetworkControllerImpl(NetworkConstants.AUTHORIZATION);
 
     @Override
     public void updateLocation(double[] coordinates) {
         try {
-            locationNetworkController.put(coordinates);
+            locationNetworkControllerImpl.put(coordinates);
         } catch (NetworkErrorException e) {
             //TODO
         }
@@ -21,7 +21,7 @@ public class UpdateLocationControllerImpl implements UpdateLocationController {
     @Override
     public void updateLocationOnDestroy(double[] coordinates) {
         try {
-            locationNetworkController.put(coordinates);
+            locationNetworkControllerImpl.put(coordinates);
         } catch (NetworkErrorException e) {
             //TODO
         }

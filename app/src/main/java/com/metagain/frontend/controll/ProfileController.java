@@ -4,8 +4,9 @@ import com.metagain.frontend.exceptions.InvalidEmailException;
 import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.LoginException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
+import com.metagain.frontend.exceptions.UsernameAlreadyExistsException;
 import com.metagain.frontend.model.OwnProfile;
-import com.metagain.frontend.network.controller.ProfileNetworkControllerImpl;
+import com.metagain.frontend.network.controller.implementations.ProfileNetworkControllerImpl;
 
 public interface ProfileController {
 
@@ -16,7 +17,7 @@ public interface ProfileController {
      * @throws InvalidEmailException wenn die angegebene email nicht der typischen Email-Form entspricht
      * @throws InvalidUsernameException wenn der username schon vergeben ist
      */
-    public void createAccount(OwnProfile ownProfile) throws InvalidEmailException, NetworkErrorException;
+    public void createAccount(OwnProfile ownProfile) throws InvalidEmailException, NetworkErrorException, InvalidUsernameException, UsernameAlreadyExistsException;
 
     /**
      * gibt die neuen Daten an den Network-Controller und sorgt dafür, dass die Angaben in
@@ -35,7 +36,7 @@ public interface ProfileController {
      * @throws NetworkErrorException wenn man keine Verbindung zum Internet hat um die Daten zu aktualisieren
      * @throws InvalidEmailException wenn die angegebene email nicht der typischen Email-Form entspricht
      */
-    public void editUsername(String username) throws InvalidUsernameException, NetworkErrorException, InvalidEmailException;
+    public void editUsername(String username) throws InvalidUsernameException, NetworkErrorException, UsernameAlreadyExistsException;
 
     /**
      * gibt die neuen Daten an den Network-Controller und sorgt dafür, dass die Angaben in der Datenbank
@@ -45,7 +46,7 @@ public interface ProfileController {
      * @throws NetworkErrorException wenn man keine Verbindung zum Internet hat um die Daten zu aktualisieren
      * @throws InvalidUsernameException wenn der username schon vergeben ist
      */
-    public void editEmail(String email) throws InvalidEmailException, NetworkErrorException, InvalidUsernameException;
+    public void editEmail(String email) throws InvalidEmailException, NetworkErrorException;
 
     /**
      * gibt die neuen Daten an den Network-Controller und sorgt dafür, dass die Angaben in der Datenbank
@@ -55,7 +56,7 @@ public interface ProfileController {
      * @throws InvalidUsernameException wenn der username schon vergeben ist
      * @throws NetworkErrorException wenn man keine Verbindung zum Internet hat um die Daten zu aktualisieren
      */
-    public void editPassword(String password) throws InvalidEmailException, InvalidUsernameException, NetworkErrorException;
+    public void editPassword(String password) throws NetworkErrorException;
 
     /**
      * ruft eine get-Fuktion beim Network-Controller auf; alle Profildaten werden geladen
@@ -81,6 +82,8 @@ public interface ProfileController {
      * @throws NetworkErrorException wenn man keine Verbindung zum Internet hat um die Daten zu aktualisieren
      */
     public void delete() throws NetworkErrorException;
+
+    public void setIncognito(boolean incognito) throws NetworkErrorException;
 
     /**
      * legt den zu nutzenden Network-Controller fest

@@ -22,6 +22,12 @@ public class Request {
         this.requestType = requestType;
     }
 
+    public Request(Profile profile, RequestType requestType, int radius) {
+        this.profile = profile;
+        this.requestType = requestType;
+        this.radius = radius;
+    }
+
     public UUID getId() {
         return id;
     }

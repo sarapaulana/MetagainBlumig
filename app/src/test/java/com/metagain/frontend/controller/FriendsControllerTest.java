@@ -5,9 +5,8 @@ import com.metagain.frontend.controll.implementations.FriendsControllerImpl;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.Friends;
 import com.metagain.frontend.model.Profile;
-import com.metagain.frontend.network.controller.FriendsNetworkControllerImpl;
+import com.metagain.frontend.network.controller.implementations.FriendsNetworkControllerImpl;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

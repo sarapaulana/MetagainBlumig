@@ -1,4 +1,4 @@
-package com.metagain.frontend.network;
+package com.metagain.frontend.network.controller;
 
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.model.Friends;

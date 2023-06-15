@@ -1,22 +1,23 @@
 package com.metagain.frontend.controll;
 
+import com.metagain.frontend.exceptions.InvalidRadiusException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.exceptions.NotFriendsException;
+import com.metagain.frontend.model.Profile;
 import com.metagain.frontend.model.Request;
-import com.metagain.frontend.network.RequestNetworkController;
+import com.metagain.frontend.network.controller.RequestNetworkController;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface RequestController {
 
-    /**
-     * sendet über den Network-Controller eine Anfrage ans Backend
-     * @param request die Anfrage
-     * @throws NotFriendsException falls der Request-Type MEET oder RADIUS und der user
-     * dem angegebenen anderen user nicht folgt
-     */
-    public void sendRequest(Request request) throws NotFriendsException, NetworkErrorException;
+
+    public void sendFollowRequest(String username) throws NetworkErrorException;
+
+    public void sendMeetingRequest(Profile friendsProfile) throws NetworkErrorException, NotFriendsException;
+
+    public void sendRadiusRequest(Profile friendsProfile, int radius) throws NetworkErrorException, NotFriendsException, InvalidRadiusException;
 
     /**
      * führt eine patch-Funktion beim Network-Controller aus,
