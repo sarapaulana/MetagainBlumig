@@ -13,6 +13,7 @@ import com.metagain.frontend.network.controller.implementations.RequestNetworkCo
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
@@ -46,9 +47,7 @@ public class RequestControllerTest {
     public void sendRequestNotFriendsExceptionTest() throws NetworkErrorException, NotFriendsException {
         Profile p1 = new Profile("grr");
 
-        Request r1 = new Request(p1, RequestType.MEET);
-
-        //TODO notFriendsException auslösen
+        Mockito.doThrow(new NotFriendsException()).when(requestNetworkControllerMock).post(ArgumentMatchers.any());
 
         assertThrows(NotFriendsException.class, () ->{
             requestController.sendMeetingRequest(p1);
