@@ -49,13 +49,13 @@ public class LogInTest {
 
     public ProfileController profileController = new ProfileControllerImpl();
 
-    @Before
+
     public void init() throws NetworkErrorException, UsernameAlreadyExistsException, InvalidUsernameException, InvalidEmailException {
         OwnProfile profile = new OwnProfile("Alice", "Ecila", "alice", "alice.ecila@gmx.de", "password");
         profileController.createAccount(profile);
     }
 
-    @After
+
     public void teardown() throws NetworkErrorException {
         Intents.release();
         profileController.delete();
@@ -63,6 +63,7 @@ public class LogInTest {
 
     @Test
     public void testLoginButton() throws NetworkErrorException, UsernameAlreadyExistsException, InvalidUsernameException, InvalidEmailException {
+        init();
         Intents.init();
         onView(ViewMatchers.withId(R.id.editTextUsername)).perform(ViewActions.click());
         onView(ViewMatchers.withId(R.id.editTextUsername)).perform(ViewActions.typeText("alice"));
@@ -74,10 +75,11 @@ public class LogInTest {
     }
 
     @Test
-    public void testRegisterButton() {
+    public void testRegisterButton() throws NetworkErrorException, UsernameAlreadyExistsException, InvalidUsernameException, InvalidEmailException {
         onView(withId(R.id.buttonRegister)).perform(click());
 
         onView(withId(R.id.registerLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+
     }
 
 
