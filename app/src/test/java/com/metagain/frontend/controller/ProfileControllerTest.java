@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ProfileNetworkControllerTest {
+public class ProfileControllerTest {
 
     ProfileController profileController = new ProfileControllerImpl();
 

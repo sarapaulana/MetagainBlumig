@@ -35,7 +35,6 @@ public class CallExecutor {
         Future<Response<T>> futureResponse = executorService.submit(executeTask);
         try {
             Response<T> response = futureResponse.get();
-            System.out.println(response.code());
             return response;
         } catch (ExecutionException e) {
             //TODO

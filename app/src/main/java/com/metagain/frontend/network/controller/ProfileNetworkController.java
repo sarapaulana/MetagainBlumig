@@ -5,6 +5,7 @@ import com.metagain.frontend.exceptions.LoginException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.exceptions.UsernameAlreadyExistsException;
 import com.metagain.frontend.model.OwnProfile;
+import com.metagain.frontend.network.services.ProfileNetworkService;
 
 public interface ProfileNetworkController {
 
@@ -15,5 +16,7 @@ public interface ProfileNetworkController {
     public void delete() throws  NetworkErrorException;
 
     public void put(OwnProfile ownProfile) throws UsernameAlreadyExistsException, NetworkErrorException;
+
+    public void insertNetworkService(ProfileNetworkService profileNetworkService);
 
 }

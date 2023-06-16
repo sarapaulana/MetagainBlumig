@@ -82,15 +82,10 @@ public class FriendsControllerTest {
 
         Friends f2 = new Friends(UUID.randomUUID(), p2,900, true);
 
-        List<Friends> friendlist = List.of(f1,f2);
-
         friendsController.deleteFriend(f1.getId());
-
-        List<Friends> newFriendList = List.of(f2);
 
         Mockito.verify(friendsNetworkControllerMock).delete(f1.getId());
 
-       // Assertions.assertEquals(friendlist,newFriendList);  //Geht nicht idk why?
 
     }
 

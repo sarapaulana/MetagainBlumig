@@ -35,14 +35,12 @@ public class LocationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        // Initialisierung des LocationManagers und LocationListeners
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationListener = new MyLocationListener();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        // Starte die Standortaktualisierungen
         startLocationUpdates();
         return START_STICKY;
     }
@@ -50,19 +48,17 @@ public class LocationService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        // Stoppe die Standortaktualisierungen
         stopLocationUpdates();
         updateLocationController.updateLocationOnDestroy(new double[]{420,420});
     }
 
-    // Methode zum Starten der Standortaktualisierungen
     private void startLocationUpdates() {
         try {
 
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-                  locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+                  locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, locationListener);
                   locationListener.onLocationChanged(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
 
             }
@@ -71,12 +67,10 @@ public class LocationService extends Service {
         }
     }
 
-    // Methode zum Stoppen der Standortaktualisierungen
     private void stopLocationUpdates() {
         locationManager.removeUpdates(locationListener);
     }
 
-    // Implementiere deinen eigenen LocationListener, der auf Standortaktualisierungen reagiert
     private class MyLocationListener implements LocationListener {
         @Override
         public void onLocationChanged(Location location) {

@@ -76,4 +76,9 @@ public class ProfileNetworkControllerImpl implements ProfileNetworkController {
         //TODO Exceptions (edit Username)
     }
 
+    @Override
+    public void insertNetworkService(ProfileNetworkService profileNetworkService) {
+        this.profileNetworkService = profileNetworkService;
+    }
+
 }
