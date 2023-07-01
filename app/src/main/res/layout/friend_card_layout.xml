@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#E8E7E7">
+        android:backgroundTint="#CE673AB7">
 
         <TextView
             android:id="@+id/textViewRadiusFriend"
@@ -20,7 +20,7 @@
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="5dp"
             android:text=""
-            android:textColor="#000000"/>
+            android:textColor="#F6F1F1" />
 
         <TextView
             android:id="@+id/textViewNameFriend"
@@ -29,7 +29,7 @@
             android:layout_gravity="center_horizontal|top"
             android:layout_marginTop="5dp"
             android:text="Name"
-            android:textColor="#000000" />
+            android:textColor="#FDFCFC" />
 
         <ImageButton
             android:id="@+id/buttonToContactProfile"
@@ -39,7 +39,7 @@
             android:backgroundTint="#00FFFFFF"
             android:contentDescription="Friend-Profile"
             app:srcCompat="@android:drawable/ic_menu_info_details"
-            app:tint="#1AAAF8" />
+            app:tint="#F1F3F4" />
 
     </androidx.cardview.widget.CardView>
 

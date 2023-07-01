@@ -21,9 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="[Name]"
-            android:textColor="@color/black"
             android:contentDescription="username"
+            android:text="[Name]"
+            android:textColor="#ECE4E4"
             app:iconTint="#2196F3" />
 
         <ImageButton
