@@ -15,8 +15,9 @@
         android:layout_marginLeft="200dp"
         android:fontFamily="monospace"
         android:gravity="center_vertical"
-        android:text="username"
         android:maxWidth="98dp"
-        android:minWidth="90dp"/>
+        android:minWidth="90dp"
+        android:text="username"
+        android:textColor="#000000" />
 
 </LinearLayout>

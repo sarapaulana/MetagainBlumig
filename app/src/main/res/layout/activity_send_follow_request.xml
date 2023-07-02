@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF">
 
     <EditText
         android:id="@+id/editTextFollowUser"
@@ -12,6 +14,11 @@
         android:ems="10"
         android:hint="Username"
         android:inputType="text"
+        android:foregroundTint="#4E4E4E"
+        android:textColor="#000000"
+        android:textColorHint="#555454"
+        android:textColorLink="#7C7B7B"
+        android:backgroundTint="#292424"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -21,11 +28,12 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="362dp"
+        android:layout_height="71dp"
         android:fontFamily="@font/krona_one"
-        android:text="SEND FOLLOW REQUEST"
+        android:text="SEND\n FOLLOW REQUEST"
         android:textAlignment="center"
+        android:textColor="#031265"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

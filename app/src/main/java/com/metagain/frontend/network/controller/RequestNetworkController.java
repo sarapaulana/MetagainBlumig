@@ -1,5 +1,6 @@
 package com.metagain.frontend.network.controller;
 
+import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.exceptions.NotFriendsException;
 import com.metagain.frontend.model.Request;
@@ -9,7 +10,7 @@ import java.util.UUID;
 
 public interface RequestNetworkController {
 
-    public void post(Request request) throws NotFriendsException, NetworkErrorException;
+    public void post(Request request) throws NotFriendsException, NetworkErrorException, InvalidUsernameException;
 
     public List<Request> get() throws NetworkErrorException;
 

@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF">
 
     <EditText
         android:id="@+id/editTextRadius"
@@ -12,6 +14,11 @@
         android:ems="10"
         android:hint="Radius"
         android:inputType="number"
+        android:foregroundTint="#4E4E4E"
+        android:textColor="#000000"
+        android:textColorHint="#555454"
+        android:textColorLink="#7C7B7B"
+        android:backgroundTint="#292424"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +34,7 @@
         android:fontFamily="@font/krona_one"
         android:text="SEND RADIUS REQUEST TO"
         android:textAlignment="center"
+        android:textColor="#031265"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,6 +61,7 @@
         android:layout_height="24dp"
         android:text="Username"
         android:textAlignment="center"
+        android:textColor="#1E1C1C"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextRadius"
         app:layout_constraintEnd_toEndOf="parent"

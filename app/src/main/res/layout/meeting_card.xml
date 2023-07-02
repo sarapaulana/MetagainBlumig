@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:contentDescription="username"
             android:text="[Name]"
-            android:textColor="#ECE4E4"
+            android:textColor="#232D65"
             app:iconTint="#2196F3" />
 
         <ImageButton

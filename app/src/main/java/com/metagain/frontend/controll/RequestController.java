@@ -1,6 +1,7 @@
 package com.metagain.frontend.controll;
 
 import com.metagain.frontend.exceptions.InvalidRadiusException;
+import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.exceptions.NotFriendsException;
 import com.metagain.frontend.model.Profile;
@@ -13,7 +14,7 @@ import java.util.UUID;
 public interface RequestController {
 
 
-    public void sendFollowRequest(String username) throws NetworkErrorException;
+    public void sendFollowRequest(String username) throws NetworkErrorException, InvalidUsernameException;
 
     public void sendMeetingRequest(Profile friendsProfile) throws NetworkErrorException, NotFriendsException;
 

@@ -20,9 +20,9 @@ public class ProfileControllerImpl implements ProfileController {
 
 
     @Override
-    public void createAccount(OwnProfile ownProfile) throws InvalidUsernameException, NetworkErrorException, UsernameAlreadyExistsException {
+    public void createAccount(OwnProfile ownProfile) throws InvalidUsernameException, NetworkErrorException, UsernameAlreadyExistsException, InvalidEmailException {
         if (!EmailValidator.isValidEmail(ownProfile.getEmail())) {
-            throw new InvalidUsernameException();
+            throw new InvalidEmailException();
         } else if (!UsernameValidator.isValidUsername(ownProfile.getUsername())) {
             throw new InvalidUsernameException();
         }

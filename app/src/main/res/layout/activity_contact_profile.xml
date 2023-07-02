@@ -5,6 +5,8 @@
     android:id="@+id/contactProfileLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF"
     tools:context="com.metagain.frontend.view.ContactProfile"
     tools:visibility="visible">
 
@@ -27,12 +29,12 @@
         android:id="@+id/imageViewProfilePicContact"
         android:layout_width="171dp"
         android:layout_height="161dp"
+        android:src="@drawable/_60_f_346839683_6napzbhpskipb8pmawufkc7c5ed7wyws"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.175"
-        android:src="@drawable/_60_f_346839683_6napzbhpskipb8pmawufkc7c5ed7wyws" />
+        app:layout_constraintVertical_bias="0.175" />
 
     <TextView
         android:id="@+id/textViewFriendsUsernameContact"
@@ -40,6 +42,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
         android:text="[Username]"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +67,7 @@
         android:layout_marginTop="40dp"
         android:text="YOUR RADIUS: "
         android:textAlignment="center"
+        android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buttonUnfollow"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,6 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Vorname Nachname"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/textViewFriendsUsernameContact"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.metagain.frontend.R;
 import com.metagain.frontend.controll.RequestController;
 import com.metagain.frontend.controll.implementations.RequestControllerImpl;
+import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.exceptions.NotFriendsException;
 import com.metagain.frontend.exceptions.handler.ActivityExceptionHandler;
@@ -45,10 +46,13 @@ public class SendFollowRequest extends AppCompatActivity {
                 String username = etUserToFollow.getText().toString();
                 try {
                     requestController.sendFollowRequest(username);
+                    backToHome();
                 } catch (NetworkErrorException e) {
                     activityExceptionHandler.handleNetworkErrorException();
+                } catch (InvalidUsernameException e) {
+                    activityExceptionHandler.handleInvalidUsernameException();
                 }
-                backToHome();
+
             }
         });
 

@@ -1,5 +1,6 @@
 package com.metagain.frontend.network.controller.implementations;
 
+import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.exceptions.NotFriendsException;
 import com.metagain.frontend.model.Request;
@@ -22,7 +23,7 @@ public class RequestNetworkControllerImpl implements  RequestNetworkController {
     private CallExecutor callExecutor = new CallExecutor();
 
     @Override
-    public void post(Request request) throws NotFriendsException, NetworkErrorException {
+    public void post(Request request) throws NotFriendsException, NetworkErrorException, InvalidUsernameException {
 
         Call<Void> call = requestNetworkService.post(NetworkConstants.AUTHORIZATION, request);
 
@@ -32,6 +33,8 @@ public class RequestNetworkControllerImpl implements  RequestNetworkController {
             throw new NetworkErrorException();
         } else if (response.code() == 409) {
             throw new NotFriendsException();
+        } else if (response.code() == 500) {
+            throw new InvalidUsernameException();
         }
 
     }

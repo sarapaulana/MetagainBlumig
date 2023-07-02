@@ -2,6 +2,7 @@ package com.metagain.frontend.controll.implementations;
 
 import com.metagain.frontend.controll.RequestController;
 import com.metagain.frontend.exceptions.InvalidRadiusException;
+import com.metagain.frontend.exceptions.InvalidUsernameException;
 import com.metagain.frontend.exceptions.NetworkErrorException;
 import com.metagain.frontend.exceptions.NotFriendsException;
 import com.metagain.frontend.model.Profile;
@@ -18,20 +19,26 @@ public class RequestControllerImpl implements RequestController {
     private RequestNetworkController requestNetworkController = new RequestNetworkControllerImpl();
 
     @Override
-    public void sendFollowRequest(String username) throws NetworkErrorException {
+    public void sendFollowRequest(String username) throws NetworkErrorException, InvalidUsernameException {
         Profile toFollow = new Profile(username);
         Request request = new Request(toFollow, RequestType.FOLLOW);
         try {
             requestNetworkController.post(request);
         } catch (NotFriendsException e) {
             //never happens
+        } catch (InvalidUsernameException e) {
+            throw new InvalidUsernameException();
         }
     }
 
     @Override
     public void sendMeetingRequest(Profile friendsProfile) throws NetworkErrorException, NotFriendsException {
         Request request = new Request(friendsProfile, RequestType.MEET);
-        requestNetworkController.post(request);
+        try {
+            requestNetworkController.post(request);
+        } catch (InvalidUsernameException e) {
+            //Never
+        }
     }
 
     @Override
@@ -40,7 +47,11 @@ public class RequestControllerImpl implements RequestController {
             throw new InvalidRadiusException();
         }
         Request request = new Request(friendsProfile, RequestType.RADIUS, radius);
-        requestNetworkController.post(request);
+        try {
+            requestNetworkController.post(request);
+        } catch (InvalidUsernameException e) {
+            //Never
+        }
     }
 
     @Override
